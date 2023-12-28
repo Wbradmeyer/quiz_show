@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Categories</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Category Setup</h1>
+        <div id="category_box">
+            <div style="padding: 10px 20px;">
+                <p>Current categories</p>
+                <p>Science</p>
+                <p>Math</p>
+                <p>History</p>
+                <!-- list of game categories all -->
+            </div>
+            <div style="padding: 10px 20px;">
+                <p>Add category</p>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="game_id">
+                    <input type="text" name="name">
+                    <input type="submit" value="Add">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

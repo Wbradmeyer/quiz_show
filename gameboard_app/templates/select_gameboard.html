@@ -4,10 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Gameboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Select Gameboard</h1>
-    <p>Select existing gameboard</p>
-    <p>Build a new gameboard</p>
+    <div class="wrapper">
+        <h1>Gameboard Setup</h1>
+        <div id="select_game">
+            <div style="padding: 10px 20px;">
+                <p><label for="games">Select existing gameboard</label></p>
+                <form action="#" method="post">
+                    <select name="games" id="games">
+                        <option value="game1_id">Game 1</option>
+                        <option value="game2_id">Game 2</option>
+                        <option value="game3_id">Game 3</option>
+                    </select>
+                    <input type="submit" value="Select">
+                </form>
+            </div>
+            <div style="padding: 10px 20px;">
+                <p>Build a new gameboard</p>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="title">
+                    <input type="submit" value="Build">
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
