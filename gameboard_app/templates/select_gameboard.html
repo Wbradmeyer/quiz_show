@@ -9,9 +9,15 @@
 </head>
 <body>
     <div class="wrapper">
-        <h1>Gameboard Setup</h1>
+        <div class="nav_bar">
+            <h1>Gameboard Setup</h1>
+            <div>
+                <a style="margin-right: 10px;" href="/games/categories">Category Manager</a>
+                <a href="/games/questions">Question Manager</a>
+            </div>
+        </div>
         <div id="select_game">
-            <div style="padding: 10px 20px;">
+            <div class="inner_boxes">
                 <p><label for="games">Select existing gameboard</label></p>
                 <form action="#" method="post">
                     <select name="games" id="games">
@@ -22,7 +28,7 @@
                     <input type="submit" value="Select">
                 </form>
             </div>
-            <div style="padding: 10px 20px;">
+            <div class="inner_boxes">
                 <p>Build a new gameboard</p>
                 <form action="#" method="post">
                     {% csrf_token %}

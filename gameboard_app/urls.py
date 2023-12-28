@@ -7,6 +7,6 @@ urlpatterns = [
     path('play', views.play_gameboard),
     path('categories', views.display_categories),
     # path('categories/new', views.add_category),
+    path('questions', views.display_cat_questions),
     # path('/questions/<int:question_id>', views.display_question),
-    path('questions', views.display_question),
 ]

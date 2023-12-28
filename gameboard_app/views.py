@@ -13,6 +13,9 @@ def select_board(request):
 def display_categories(request):
     return render(request, 'categories.html')
 
+def display_cat_questions(request):
+    return render(request, 'new_question.html')
+
 def display_question(request):
     return render(request, 'question.html')
 

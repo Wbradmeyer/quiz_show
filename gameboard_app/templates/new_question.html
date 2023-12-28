@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Question</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav_bar">
+            <h1>Question Setup</h1>
+            <a class="back" href="/games/categories">Back</a>
+        </div>
+        <div id="question_box">
+            <div class="inner_boxes">
+                <p>Current questions:</p>
+                <p>text abbrev...</p>
+                <p>text abbrev...</p>
+                <p>text abbrev...</p>
+                <!-- list of category questions all -->
+            </div>
+            <div class="inner_boxes">
+                <p>Add question</p>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="category_id">
+                    <p>
+                        <label for="question">Type question:</label>
+                        <input type="text" name="question">
+                    </p>
+                    <p>
+                        <label for="answer">Type answer:</label>
+                        <input type="text" name="answer">
+                    </p>
+                    <input type="submit" value="Add">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
