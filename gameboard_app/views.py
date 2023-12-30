@@ -11,15 +11,26 @@ def create_category(request):
     Category.add_category({'name': request.POST['name'], 'game_assigned': game})
     return redirect('/games/categories')
 
+def create_question(request):
+    category = Category.get_by_id(request.POST['cat_id'])
+    Question.add_question({'question': request.POST['question'], 'answer': request.POST['answer'],
+                        'points': request.POST['points'], 'category_assigned': category})
+    return redirect('/games/questions')
+
 # Read methods
 def index(request):
     return redirect('/games/select')
 
-def select_board(request):
+def display_select_board(request):
     content = {
         'all_games': Game.get_all()
     }
     return render(request, 'select_gameboard.html', content)
+
+def select_gameboard(request):
+    game = Game.get_by_id(id=request.POST['game_id'])
+    request.session['active_game'] = game
+    return redirect('games/categories')
 
 def display_categories(request):
     content = {
