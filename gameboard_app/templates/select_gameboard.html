@@ -12,8 +12,9 @@
         <div class="nav_bar">
             <h1>Gameboard Setup</h1>
             <div>
-                <a style="margin-right: 10px;" href="/games/categories">Category Manager</a>
-                <a href="/games/questions">Question Manager</a>
+                <!-- <a style="margin-right: 10px;" href="/games/categories">Category Manager</a>
+                <a href="/games/questions">Question Manager</a> -->
+                <a class="back" href="/games">Clear</a>
             </div>
         </div>
         <div id="select_game">
@@ -22,7 +23,7 @@
                 <form action="/games/select" method="post">
                     {% csrf_token %}
                     <select name="game_id" id="game_id">
-                        <option value="None"></option>
+                        <option value="0"></option>
                         {% for game in all_games %}
                             <option value="{{ game.id }}">{{ game.title }}</option>
                         {% endfor %}

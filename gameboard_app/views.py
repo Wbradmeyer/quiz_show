@@ -31,6 +31,8 @@ def display_select_board(request):
     return render(request, 'select_gameboard.html', content)
 
 def select_gameboard(request):
+    if request.POST['game_id'] == '0':
+        return redirect('/games')
     request.session['game_id'] = request.POST['game_id']
     return redirect('/games/categories')
 
@@ -59,3 +61,15 @@ def play_gameboard(request):
 
 
 # Delete methods
+def delete_game(request, game_id):
+    Game.destroy(id=game_id)
+    return redirect('/games')
+
+def delete_category(request, cat_id):
+    Category.destroy(id=cat_id)
+    return redirect('/games/categories')
+
+def delete_question(request, question_id):
+    category = Question.get_by_id(id=question_id).category_assigned
+    Question.destroy(id=question_id)
+    return redirect(f'/games/categories/{category.id}')
