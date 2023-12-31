@@ -16,28 +16,24 @@
         <div id="question_box">
             <div class="inner_boxes">
                 <p>Current questions:</p>
-                <p>text abbrev...</p>
-                <p>text abbrev...</p>
-                <p>text abbrev...</p>
-                <!-- list of category questions all -->
+                {% for question in category.question_list.all %}
+                    <p>({{ question.points }} pts) <a href="/games/questions/{{ question.id }}">{{ question.question }}</a></p>
+                {% endfor %}
             </div>
             <div class="inner_boxes">
-                <p>Add question</p>
-                <form action="#" method="post">
+                <h3>Add question</h3>
+                <form action="/games/questions/new" method="post">
                     {% csrf_token %}
-                    <input type="hidden" name="category_id">
-                    <p>
-                        <label for="question">Type question:</label>
-                        <textarea name="question"></textarea>
-                    </p>
-                    <p>
-                        <label for="answer">Type answer:</label>
-                        <input type="text" name="answer">
-                    </p>
-                    <p>
-                        <label for="points">Assign a point value:</label>
-                        <input type="number" name="points">
-                    </p>
+                    <input type="hidden" name="cat_id" value="{{ category.id }}">
+                    <p><label>Type question:</label></p>
+                    <textarea name="question" cols="30" rows="4"></textarea>
+
+                    <p><label>Type answer:</label></p>
+                    <input type="text" name="answer">
+                    
+                    <p><label>Assign a point value:</label></p>
+                    <input type="number" name="points">
+                    
                     <input type="submit" value="Add">
                 </form>
             </div>

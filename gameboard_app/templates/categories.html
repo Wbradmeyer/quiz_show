@@ -11,23 +11,23 @@
     <div class="wrapper">
         <div class="nav_bar">
             <h1>Category Setup</h1>
-            <a class="back" href="/games/select">Back</a>
+            <a class="back" href="/games">Back</a>
         </div>
+        <h2 style="padding: 0px 20px;">{{ game.title }}</h2>
         <div id="category_box">
             <div class="inner_boxes">
-                <p>Current categories:</p>
+                <h3>Current categories:</h3>
+                {% for cat in game.categories_avail.all %}
+                    <p><a href="/games/categories/{{ cat.id }}">{{ cat.name }}</a></p>
+                {% endfor %}
                 <p style="font-style: italic;">(click to add a question)</p>
-                <p><a href="#">Science</a></p>
-                <p><a href="#">Math</a></p>
-                <p><a href="#">History</a></p>
-                <!-- list of game categories all -->
             </div>
             <div class="inner_boxes">
-                <p>Add category</p>
-                <form action="#" method="post">
+                <form action="/games/categories/new" method="post">
                     {% csrf_token %}
-                    <input type="hidden" name="game_id">
-                    <input type="text" name="name">
+                    <input type="hidden" name="game_id" value="{{ game.id }}">
+                    <h3><label>Add category:</label></h3>
+                        <input type="text" name="name">
                     <input type="submit" value="Add">
                 </form>
             </div>

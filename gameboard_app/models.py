@@ -14,6 +14,7 @@ class Game(models.Model):
     def get_by_id(cls, id):
         return cls.objects.get(id=id)
 
+    @classmethod
     def add_game(cls, data):
         return cls.objects.create(title=data['title'])
     
@@ -78,7 +79,7 @@ class Question(models.Model):
     @classmethod
     def add_question(cls, data):
         return cls.objects.create(question=data['question'], answer=data['answer'], 
-                                points=['points'], category_assigned=data['category_assigned'])
+                                points=data['points'], category_assigned=data['category_assigned'])
     
     @classmethod
     def update(cls, data):

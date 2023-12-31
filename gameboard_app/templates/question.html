@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Question</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>This is a question title</h1>
-    <p>Category and points</p>
-    <p>Question text</p>
+    <h1>{{ question.category_assigned.name }} - {{ question.points }}pts</h1>
+    <p>{{ question.question }}</p>
 </body>
 </html>

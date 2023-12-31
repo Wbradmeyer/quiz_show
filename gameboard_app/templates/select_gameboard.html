@@ -18,21 +18,25 @@
         </div>
         <div id="select_game">
             <div class="inner_boxes">
-                <p><label for="games">Select existing gameboard</label></p>
-                <form action="#" method="post">
-                    <select name="games" id="games">
-                        <option value="game1_id">Game 1</option>
-                        <option value="game2_id">Game 2</option>
-                        <option value="game3_id">Game 3</option>
+                <h3><label for="game_id">Select existing gameboard</label></h3>
+                <form action="/games/select" method="post">
+                    {% csrf_token %}
+                    <select name="game_id" id="game_id">
+                        <option value="None"></option>
+                        {% for game in all_games %}
+                            <option value="{{ game.id }}">{{ game.title }}</option>
+                        {% endfor %}
                     </select>
                     <input type="submit" value="Select">
                 </form>
             </div>
             <div class="inner_boxes">
-                <p>Build a new gameboard</p>
-                <form action="#" method="post">
+                <h3>Build a new gameboard</h3>
+                <form action="/games/new" method="post">
                     {% csrf_token %}
-                    <input type="text" name="title">
+                    <label>Game title:
+                        <input type="text" name="title">
+                    </label>
                     <input type="submit" value="Build">
                 </form>
             </div>

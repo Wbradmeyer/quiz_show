@@ -3,7 +3,8 @@ from . models import Game, Category, Question
 
 # Create methods
 def create_game(request):
-    Game.add_game({'title': request.POST['title']})
+    game = Game.add_game({'title': request.POST['title']})
+    request.session['game_id'] = game.id
     return redirect('/games/categories')
 
 def create_category(request):
@@ -15,39 +16,41 @@ def create_question(request):
     category = Category.get_by_id(request.POST['cat_id'])
     Question.add_question({'question': request.POST['question'], 'answer': request.POST['answer'],
                         'points': request.POST['points'], 'category_assigned': category})
-    return redirect('/games/questions')
+    return redirect(f'/games/categories/{category.id}')
 
 # Read methods
 def index(request):
-    return redirect('/games/select')
+    return redirect('/games')
 
 def display_select_board(request):
+    if 'game_id' in request.session:
+        del request.session['game_id']
     content = {
         'all_games': Game.get_all()
     }
     return render(request, 'select_gameboard.html', content)
 
 def select_gameboard(request):
-    game = Game.get_by_id(id=request.POST['game_id'])
-    request.session['active_game'] = game
-    return redirect('games/categories')
+    request.session['game_id'] = request.POST['game_id']
+    return redirect('/games/categories')
 
 def display_categories(request):
     content = {
-        'all_categories': Category.get_all(),
-        # want a list of game's cats
+        'game': Game.get_by_id(request.session['game_id']),
     }
     return render(request, 'categories.html', content)
 
-def display_cat_questions(request):
+def display_cat_questions(request, cat_id):
     content = {
-        'all_questions': Question.get_all(),
-        # want a list of cat's ques
+        'category': Category.get_by_id(cat_id),
     }
-    return render(request, 'new_question.html')
+    return render(request, 'new_question.html', content)
 
-def display_question(request):
-    return render(request, 'question.html')
+def display_question(request, question_id):
+    content = {
+        'question': Question.get_by_id(id=question_id)
+    }
+    return render(request, 'question.html', content)
 
 def play_gameboard(request):
     return render(request, 'gameboard.html')
