@@ -3,7 +3,7 @@ body {
 }
 
 .wrapper {
-    width: 700px;
+    width: 800px;
     border: 1px solid black;
 }
 
@@ -14,7 +14,7 @@ body {
     padding: 0px 20px;
 }
 
-.back {
+.back, .delete, .q_edit, .q_delete {
     text-decoration: none;
     border: 1px solid black;
     border-radius: 5pt;
@@ -23,13 +23,14 @@ body {
     padding: 5px;
 }
 
-.delete {
-    text-decoration: none;
-    border: 1px solid black;
-    border-radius: 5pt;
+.delete, .q_delete {
     background-color: red;
-    color: white;
-    padding: 5px;
+}
+
+.q_edit, .q_delete {
+    font-size: 10pt;
+    padding: 2px;
+    margin: 0px 0px 0px 10px;
 }
 
 #select_game, #category_box, #question_box {
@@ -39,10 +40,18 @@ body {
     margin: 10px;
 }
 
-.inner_boxes {
+.inner_boxes, #ques_box_left, #ques_box_right {
     border: 1px solid green;
     padding: 10px 20px;
     width: 50%;
+}
+
+#ques_box_left {
+    width: 60%;
+}
+
+#ques_box_right {
+    width: 40%;
 }
 
 p {

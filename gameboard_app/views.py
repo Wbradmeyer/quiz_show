@@ -49,8 +49,10 @@ def display_cat_questions(request, cat_id):
     return render(request, 'new_question.html', content)
 
 def display_question(request, question_id):
+    question = Question.get_by_id(id=question_id)
     content = {
-        'question': Question.get_by_id(id=question_id)
+        'question': question,
+        'category': question.category_assigned
     }
     return render(request, 'question.html', content)
 
@@ -58,7 +60,18 @@ def play_gameboard(request):
     return render(request, 'gameboard.html')
 
 # Update methods
+def edit_game(request, game_id):
+    Game.update({'id':game_id, 'title':request.POST['title']})
+    return redirect('/games/categories')
 
+def edit_category(request, cat_id):
+    Category.update({'id':cat_id, 'name':request.POST['name']})
+    return redirect(f'/games/categories/{cat_id}')
+
+def edit_question(request, question_id):
+    Question.update({'id':question_id, 'question':request.POST['question'], 
+                    'answer':request.POST['answer'], 'points':request.POST['points']})
+    return redirect(f'/games/questions/{question_id}')
 
 # Delete methods
 def delete_game(request, game_id):

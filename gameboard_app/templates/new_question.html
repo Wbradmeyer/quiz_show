@@ -17,13 +17,17 @@
             <h2 style="padding: 0px 20px;">{{ category.game_assigned.title }}</h2>
             <h3 style="padding: 0px 20px;">Category - {{ category.name }}</h3>
         <div id="question_box">
-            <div class="inner_boxes">
+            <div id="ques_box_left">
                 <p>Current questions:</p>
                 {% for question in category.question_list.all %}
-                    <p>({{ question.points }} pts) <a href="/games/questions/{{ question.id }}">{{ question.question }}</a></p>
+                    <div style="display: flex; align-items: center;">
+                        <p>({{ question.points }}) <a href="/games/questions/{{ question.id }}">{{ question.question }}</a></p>
+                        <a class="q_edit" href="/games/questions/update/{{ question.id }}">Edit</a>
+                        <a class="q_delete" href="/games/questions/delete/{{ question.id }}">Delete</a>
+                    </div>
                 {% endfor %}
             </div>
-            <div class="inner_boxes">
+            <div id="ques_box_right">
                 <h3>Add question</h3>
                 <form action="/games/questions/new" method="post">
                     {% csrf_token %}
