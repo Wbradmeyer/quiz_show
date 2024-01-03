@@ -15,6 +15,7 @@ urlpatterns = [
     path('categories/delete/<int:cat_id>', views.delete_category),
     path('questions/new', views.create_question),
     path('questions/<int:question_id>', views.display_question),
-    path('questions/update/<int:question_id>', views.edit_question),
+    path('questions/edit/<int:question_id>', views.question_edit_page),
+    path('questions/update', views.edit_question),
     path('questions/delete/<int:question_id>', views.delete_question),
 ]

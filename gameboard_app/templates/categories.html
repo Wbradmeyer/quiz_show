@@ -21,7 +21,11 @@
             <div class="inner_boxes">
                 <h3>Current categories:</h3>
                 {% for cat in game.categories_avail.all %}
-                    <p><a href="/games/categories/{{ cat.id }}">{{ cat.name }}</a></p>
+                    <div style="display: flex; align-items: center;">
+                        <p><a href="/games/categories/{{ cat.id }}">{{ cat.name }}</a></p>
+                        <a href="/games/categories/edit/{{ cat.id }}" class="q_edit">Edit</a>
+                        <a href="/games/categories/delete/{{ cat.id }}" class="q_delete">Delete</a>
+                    </div>
                 {% endfor %}
                 <p style="font-style: italic;">(click to add a question)</p>
             </div>

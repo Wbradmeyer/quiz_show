@@ -22,7 +22,7 @@
                 {% for question in category.question_list.all %}
                     <div style="display: flex; align-items: center;">
                         <p>({{ question.points }}) <a href="/games/questions/{{ question.id }}">{{ question.question }}</a></p>
-                        <a class="q_edit" href="/games/questions/update/{{ question.id }}">Edit</a>
+                        <a class="q_edit" href="/games/questions/edit/{{ question.id }}">Edit</a>
                         <a class="q_delete" href="/games/questions/delete/{{ question.id }}">Delete</a>
                     </div>
                 {% endfor %}

@@ -68,10 +68,18 @@ def edit_category(request, cat_id):
     Category.update({'id':cat_id, 'name':request.POST['name']})
     return redirect(f'/games/categories/{cat_id}')
 
-def edit_question(request, question_id):
-    Question.update({'id':question_id, 'question':request.POST['question'], 
+def question_edit_page(request, question_id):
+    question = Question.get_by_id(id=question_id)
+    content = {
+        'question': question,
+        'category': question.category_assigned
+    }
+    return render(request, 'edit_question.html', content)
+
+def edit_question(request):
+    Question.update({'id':request.POST['question_id'], 'question':request.POST['question'], 
                     'answer':request.POST['answer'], 'points':request.POST['points']})
-    return redirect(f'/games/questions/{question_id}')
+    return redirect(f"/games/questions/{request.POST['question_id']}")
 
 # Delete methods
 def delete_game(request, game_id):
