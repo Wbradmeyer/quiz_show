@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gameboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Gameboard (in play)</h1>
-    <p>Categories and Questions</p>
+    <div class="game_wrapper">
+        <div class="nav_bar">
+            <h1>Gameboard: {{ game.title }}</h1>
+            <a href="/games">Exit Game</a>
+        </div>
+        <div class="play_box">
+            {% for category in categories %}
+                <div class="cat_box">
+                    <h2 class="cat_title">{{ category.name }}</h2>
+                    <!-- need to go back and run question list sorted by point values -->
+                    {% for question in category.question_list.all %}
+                        <div class="ques_box">
+                            <h3><a href="/games/questions/{{ question.id }}">{{ question.points }}</a></h3>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p></p>
 </body>
 </html>

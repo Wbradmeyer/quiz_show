@@ -56,17 +56,22 @@ def display_question(request, question_id):
     }
     return render(request, 'question.html', content)
 
-def play_gameboard(request):
-    return render(request, 'gameboard.html')
+def play_gameboard(request, game_id):
+    game = Game.get_by_id(id=game_id)
+    content = {
+        'game': game,
+        'categories': game.categories_avail.all()
+    }
+    return render(request, 'gameboard.html', content)
 
 # Update methods
-def edit_game(request, game_id):
-    Game.update({'id':game_id, 'title':request.POST['title']})
-    return redirect('/games/categories')
+# def edit_game(request, game_id):
+#     Game.update({'id':game_id, 'title':request.POST['title']})
+#     return redirect('/games/categories')
 
-def edit_category(request, cat_id):
-    Category.update({'id':cat_id, 'name':request.POST['name']})
-    return redirect(f'/games/categories/{cat_id}')
+# def edit_category(request, cat_id):
+#     Category.update({'id':cat_id, 'name':request.POST['name']})
+#     return redirect(f'/games/categories/{cat_id}')
 
 def question_edit_page(request, question_id):
     question = Question.get_by_id(id=question_id)

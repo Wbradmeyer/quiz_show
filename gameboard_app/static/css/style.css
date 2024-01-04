@@ -7,6 +7,11 @@ body {
     border: 1px solid black;
 }
 
+.game_wrapper {
+    width: auto;
+    border: 1px solid black;
+}
+
 .nav_bar {
     display: flex;
     justify-content: space-between;
@@ -14,13 +19,18 @@ body {
     padding: 0px 20px;
 }
 
-.back, .delete, .q_edit, .q_delete {
+.back, .delete, .q_edit, .q_delete, .play {
     text-decoration: none;
     border: 1px solid black;
     border-radius: 5pt;
     background-color: gold;
     color: black;
     padding: 5px;
+}
+
+.play {
+    background-color: blue;
+    color: white;
 }
 
 .delete, .q_delete {
@@ -56,4 +66,27 @@ body {
 
 p {
     margin: 5px 0px;
+}
+
+.play_box {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid green;
+}
+
+.cat_box {
+    border: solid red 1px;
+    padding: 0px 20px 20px;
+}
+
+.cat_title, .ques_box {
+    border: solid 1px blue;
+    padding: 10px;
+    text-align: center;
+    width: 150px;
+}
+
+.ques_box {
+    height: 60px;
+    margin: auto;
 }
