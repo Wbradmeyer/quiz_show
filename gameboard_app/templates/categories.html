@@ -12,28 +12,29 @@
         <div class="nav_bar">
             <h1>Category Setup</h1>
             <div>
-                <a class="play" href="/games/play/{{ game.id }}">Play This Gameboard</a>
+                <!-- <a class="play" href="/games/play/{{ game.id }}">Play This Gameboard</a> -->
+                <a class="play" href="{% url 'play' game.id %}">Play This Gameboard</a>
                 <a class="back" href="/games">Back</a>
             </div>
         </div>
         <div style="display: flex; align-items: center;">
             <h2 style="padding: 0px 20px;">{{ game.title }}</h2>
-            <a href="/games/delete/{{ game.id }}" class="delete">Delete Gameboard</a>
+            <a href="{% url 'delete_game' game.id %}" class="delete">Delete Gameboard</a>
         </div>
         <div id="category_box">
             <div class="inner_boxes">
                 <h3>Current categories:</h3>
                 {% for cat in game.categories_avail.all %}
                     <div style="display: flex; align-items: center;">
-                        <p><a href="/games/categories/{{ cat.id }}">{{ cat.name }}</a></p>
+                        <p><a href="{% url 'show_cat_qs' cat.id %}">{{ cat.name }}</a></p>
                         <!-- <a href="/games/categories/edit/{{ cat.id }}" class="q_edit">Edit</a> -->
-                        <a href="/games/categories/delete/{{ cat.id }}" class="q_delete">Delete</a>
+                        <a href="{% url 'delete_cat' cat.id %}" class="q_delete">Delete</a>
                     </div>
                 {% endfor %}
                 <p style="font-style: italic;">(click to add a question)</p>
             </div>
             <div class="inner_boxes">
-                <form action="/games/categories/new" method="post">
+                <form action="{% url 'new_cat' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="game_id" value="{{ game.id }}">
                     <h3><label>Add category:</label></h3>
