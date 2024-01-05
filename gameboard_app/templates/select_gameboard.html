@@ -20,7 +20,7 @@
         <div id="select_game">
             <div class="inner_boxes">
                 <h3><label for="game_id">Select existing gameboard</label></h3>
-                <form action="/games/select" method="post">
+                <form action="{% url 'select_game' %}" method="post">
                     {% csrf_token %}
                     <select name="game_id" id="game_id">
                         <option value="0"></option>
@@ -33,7 +33,7 @@
             </div>
             <div class="inner_boxes">
                 <h3>Build a new gameboard</h3>
-                <form action="/games/new" method="post">
+                <form action="{% url 'new_game' %}" method="post">
                     {% csrf_token %}
                     <label>Game title:
                         <input type="text" name="title">

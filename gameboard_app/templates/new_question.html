@@ -11,7 +11,7 @@
     <div class="wrapper">
         <div class="nav_bar">
             <h1>Question Setup</h1>
-            <a class="back" href="/games/categories">Back</a>
+            <a class="back" href="{% url 'show_cats' %}">Back</a>
         </div>
         <div>
             <h2 style="padding: 0px 20px;">{{ category.game_assigned.title }}</h2>
@@ -21,15 +21,15 @@
                 <p>Current questions:</p>
                 {% for question in category.question_list.all %}
                     <div style="display: flex; align-items: center;">
-                        <p>({{ question.points }}) <a href="/games/questions/{{ question.id }}">{{ question.question }}</a></p>
-                        <a class="q_edit" href="/games/questions/edit/{{ question.id }}">Edit</a>
-                        <a class="q_delete" href="/games/questions/delete/{{ question.id }}">Delete</a>
+                        <p>({{ question.points }}) <a href="{% url 'show_ques' question.id %}">{{ question.question }}</a></p>
+                        <a class="q_edit" href="{% url 'edit_ques_page' question.id %}">Edit</a>
+                        <a class="q_delete" href="{% url 'delete_ques' question.id %}">Delete</a>
                     </div>
                 {% endfor %}
             </div>
             <div id="ques_box_right">
                 <h3>Add question</h3>
-                <form action="/games/questions/new" method="post">
+                <form action="{% url 'new_question' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="cat_id" value="{{ category.id }}">
                     <p><label>Type question:</label></p>
