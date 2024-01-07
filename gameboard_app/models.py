@@ -6,6 +6,9 @@ class Game(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.title
+
     @classmethod
     def get_all(cls):
         return cls.objects.all()
@@ -35,6 +38,9 @@ class Category(models.Model):
     game_assigned = models.ForeignKey(Game, related_name="categories_avail", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
 
     @classmethod
     def get_all(cls):
@@ -67,6 +73,9 @@ class Question(models.Model):
     category_assigned = models.ForeignKey(Category, related_name="question_list", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.question[0:30]
 
     @classmethod
     def get_all(cls):
