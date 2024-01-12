@@ -25,8 +25,8 @@
             <div class="inner_boxes">
                 <h3>Current categories:</h3>
                 {% for cat in game.categories_avail.all %}
-                    <div style="display: flex; align-items: center;">
-                        <p><a href="{% url 'show_cat_qs' cat.id %}">{{ cat.name }}</a></p>
+                    <div style="display: flex; align-items: center; margin-left: 10px;">
+                        <p><a class="cat_link" href="{% url 'show_cat_qs' cat.id %}">{{ cat.name }}</a></p>
                         <!-- <a href="/games/categories/edit/{{ cat.id }}" class="q_edit">Edit</a> -->
                         <a href="{% url 'delete_cat' cat.id %}" class="q_delete">Delete</a>
                     </div>

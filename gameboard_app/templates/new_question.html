@@ -21,7 +21,13 @@
                 <p>Current questions:</p>
                 {% for question in category.question_list.all %}
                     <div style="display: flex; align-items: center;">
-                        <p>({{ question.points }}) <a href="{% url 'show_ques' question.id %}">{{ question.question }}</a></p>
+                        <p>({{ question.points }}) <a class="cat_link" href="{% url 'show_ques' question.id %}">
+                            {% if question.question|length > 25 %}
+                                {{ question.question|slice:":25"}}...
+                            {% else %}
+                                {{ question.question }}
+                            {% endif %}
+                        </a></p>
                         <a class="q_edit" href="{% url 'edit_ques_page' question.id %}">Edit</a>
                         <a class="q_delete" href="{% url 'delete_ques' question.id %}">Delete</a>
                     </div>
