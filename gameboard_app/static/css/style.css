@@ -19,7 +19,7 @@ body {
     padding: 0px 20px;
 }
 
-.back, .delete, .q_edit, .q_delete, .play {
+.back, .delete, .q_edit, .q_delete, .play, .add {
     text-decoration: none;
     border: 1px solid black;
     border-radius: 5pt;
@@ -41,6 +41,11 @@ body {
     font-size: 10pt;
     padding: 2px;
     margin: 0px 0px 0px 10px;
+}
+
+.add {
+    background-color: green;
+    color: white;
 }
 
 #select_game, #category_box, #question_box {
@@ -89,4 +94,10 @@ p {
 .ques_box {
     height: 60px;
     margin: auto;
+}
+
+.input {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px;
 }

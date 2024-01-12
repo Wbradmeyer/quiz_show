@@ -33,15 +33,15 @@
                     {% csrf_token %}
                     <input type="hidden" name="cat_id" value="{{ category.id }}">
                     <p><label>Type question:</label></p>
-                    <textarea name="question" cols="30" rows="4"></textarea>
+                    <textarea class="input" name="question" cols="35" rows="4"></textarea>
 
                     <p><label>Type answer:</label></p>
-                    <input type="text" name="answer">
+                    <input class="input" type="text" name="answer">
                     
                     <p><label>Assign a point value:</label></p>
-                    <input type="number" name="points">
+                    <input class="input" type="number" name="points">
                     
-                    <input type="submit" value="Add">
+                    <input class="add" type="submit" value="Add">
                 </form>
             </div>
         </div>

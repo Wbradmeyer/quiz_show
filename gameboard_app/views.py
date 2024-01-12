@@ -25,10 +25,10 @@ def index(request):
 def display_select_board(request):
     if 'game_id' in request.session:
         del request.session['game_id']
-    content = {
+    context = {
         'all_games': Game.get_all()
     }
-    return render(request, 'select_gameboard.html', content)
+    return render(request, 'select_gameboard.html', context)
 
 def select_gameboard(request):
     if request.POST['game_id'] == '0':
@@ -37,32 +37,32 @@ def select_gameboard(request):
     return redirect('/games/categories')
 
 def display_categories(request):
-    content = {
+    context = {
         'game': Game.get_by_id(request.session['game_id']),
     }
-    return render(request, 'categories.html', content)
+    return render(request, 'categories.html', context)
 
 def display_cat_questions(request, cat_id):
-    content = {
+    context = {
         'category': Category.get_by_id(cat_id),
     }
-    return render(request, 'new_question.html', content)
+    return render(request, 'new_question.html', context)
 
 def display_question(request, question_id):
     question = Question.get_by_id(id=question_id)
-    content = {
+    context = {
         'question': question,
         'category': question.category_assigned
     }
-    return render(request, 'question.html', content)
+    return render(request, 'question.html', context)
 
 def play_gameboard(request, game_id):
     game = Game.get_by_id(id=game_id)
-    content = {
+    context = {
         'game': game,
         'categories': game.categories_avail.all()
     }
-    return render(request, 'gameboard.html', content)
+    return render(request, 'gameboard.html', context)
 
 # Update methods
 # def edit_game(request, game_id):
@@ -75,11 +75,11 @@ def play_gameboard(request, game_id):
 
 def question_edit_page(request, question_id):
     question = Question.get_by_id(id=question_id)
-    content = {
+    context = {
         'question': question,
         'category': question.category_assigned
     }
-    return render(request, 'edit_question.html', content)
+    return render(request, 'edit_question.html', context)
 
 def edit_question(request):
     Question.update({'id':request.POST['question_id'], 'question':request.POST['question'], 
