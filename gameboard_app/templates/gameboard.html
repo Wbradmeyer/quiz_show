@@ -11,7 +11,7 @@
     <div class="game_wrapper">
         <div class="nav_bar">
             <h1>Gameboard: {{ game.title }}</h1>
-            <a href="{% url 'main_select' %}">Exit Game</a>
+            <a class="back" href="{% url 'main_select' %}">Exit Game</a>
         </div>
         <div class="play_box">
             {% for category in categories %}
@@ -20,7 +20,7 @@
                     <!-- need to go back and run question list sorted by point values -->
                     {% for question in category.question_list.all %}
                         <div class="ques_box">
-                            <h3><a href="{% url 'show_ques' question.id %}">{{ question.points }}</a></h3>
+                            <h3><a class="q_link" href="{% url 'show_ques' question.id %}">{{ question.points }}</a></h3>
                         </div>
                     {% endfor %}
                 </div>
