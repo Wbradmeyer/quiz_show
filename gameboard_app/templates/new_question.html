@@ -16,8 +16,8 @@
         <div>
             <h2 style="padding: 0px 20px;">{{ category.game_assigned.title }}</h2>
             <h3 style="padding: 0px 20px;">Category - {{ category.name }}</h3>
-        <div id="question_box">
-            <div id="ques_box_left">
+        <div class="question_box">
+            <div class="ques_box_left">
                 <p>Current questions:</p>
                 {% for question in category.question_list.all %}
                     <div style="display: flex; align-items: center;">
@@ -33,7 +33,7 @@
                     </div>
                 {% endfor %}
             </div>
-            <div id="ques_box_right">
+            <div class="ques_box_right">
                 <h3>Add question</h3>
                 <form action="{% url 'new_question' %}" method="post">
                     {% csrf_token %}

@@ -12,10 +12,21 @@
         <div class="nav_bar">
             <h1>{{ category.game_assigned.title }}</h1>
             <h2>{{ question.category_assigned.name }} - {{ question.points }}pts</h2>
-            <a class="back" href="{% url 'show_cat_qs' category.id %}">Back</a>
+            <a class="back" href="{% url 'play' category.game_assigned.id %}">Back</a>
         </div>
-        <div class="inner_boxes">
-            <p>{{ question.question }}</p>
+        <div class="question_box">
+            <div class="ques_box_left">
+                <p class="ques_text">{{ question.question }}</p>
+            </div>
+            <div class="ques_box_right">
+                <label><p style="margin-top: 10px;">Answer:</p></label>
+                <input class="input" type="text" style="margin-bottom: 10px; width: 95%;">
+                <hr>
+                <div style="display: flex; justify-content: space-evenly;">
+                    <p class="add">Correct</p>
+                    <p class="delete">Incorrect</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
