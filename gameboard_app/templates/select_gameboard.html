@@ -17,29 +17,31 @@
                 <a class="back" href="/games">Clear</a>
             </div>
         </div>
-        <div id="select_game">
-            <div class="inner_boxes">
-                <h3><label for="game_id">Select existing gameboard</label></h3>
-                <form action="{% url 'select_game' %}" method="post">
-                    {% csrf_token %}
-                    <select class="input" name="game_id" id="game_id">
-                        <option value="0"></option>
-                        {% for game in all_games %}
-                            <option value="{{ game.id }}">{{ game.title }}</option>
-                        {% endfor %}
-                    </select>
-                    <input class="add" type="submit" value="Select">
-                </form>
-            </div>
-            <div class="inner_boxes">
-                <h3>Build a new gameboard</h3>
-                <form action="{% url 'new_game' %}" method="post">
-                    {% csrf_token %}
-                    <label>Game title:
-                        <input class="input" type="text" name="title">
-                    </label>
-                    <input class="add" type="submit" value="Build">
-                </form>
+        <div class="title_box">
+            <div id="select_game">
+                <div class="inner_boxes">
+                    <h3><label for="game_id">Select existing gameboard</label></h3>
+                    <form action="{% url 'select_game' %}" method="post">
+                        {% csrf_token %}
+                        <select class="input" name="game_id" id="game_id">
+                            <option value="0"></option>
+                            {% for game in all_games %}
+                                <option value="{{ game.id }}">{{ game.title }}</option>
+                            {% endfor %}
+                        </select>
+                        <input class="add" type="submit" value="Select">
+                    </form>
+                </div>
+                <div class="inner_boxes">
+                    <h3>Build a new gameboard</h3>
+                    <form action="{% url 'new_game' %}" method="post">
+                        {% csrf_token %}
+                        <label>Game title:
+                            <input class="input" type="text" name="title">
+                        </label>
+                        <input class="add" type="submit" value="Build">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

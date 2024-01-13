@@ -17,10 +17,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 20px 0px;
     padding: 0px 20px;
     border: 2px solid black;
     border-radius: 10px;
-    background-color:rgb(224, 238, 249)
+    background-color:rgb(224, 238, 249);
+    box-shadow: 3px 3px 3px darkslategray;
+}
+
+.title_box {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color:rgb(62, 83, 83);
+    box-shadow: 3px 3px 3px black;
 }
 
 .back, .delete, .q_edit, .q_delete, .play, .add {
@@ -40,12 +49,16 @@ body {
 }
 
 .play {
-    background-color: blue;
+    background-color: rgb(53, 53, 216);
     color: white;
 }
 
 .delete, .q_delete {
     background-color: red;
+}
+
+.delete {
+    box-shadow: 0px 3px 3px black;
 }
 
 .q_edit, .q_delete {
@@ -62,14 +75,14 @@ body {
 #select_game, #category_box, .question_box {
     /* border: 1px solid red; */
     display: flex;
-    align-items: center;
+    align-items: start;
     margin: 10px;
 }
 
 .inner_boxes, .ques_box_left, .ques_box_right {
     border: 2px solid black;
     border-radius: 10px;
-    box-shadow: 3px 3px 3px darkslategray;
+    box-shadow: 3px 3px 3px black;
     margin: 10px;
     padding: 10px 20px 20px;
     width: 50%;
@@ -90,7 +103,7 @@ p {
 
 .play_box {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     border: 2px solid black;
     background-color: rgb(176, 199, 218);
     border-radius: 10px;

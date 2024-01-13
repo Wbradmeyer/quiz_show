@@ -13,13 +13,13 @@
             <h1>Question Setup</h1>
             <a class="back" href="{% url 'show_cats' %}">Back</a>
         </div>
-        <div>
-            <h2 style="padding: 0px 20px;">{{ category.game_assigned.title }}</h2>
-            <h3 style="padding: 0px 20px;">Category - {{ category.name }}</h3>
+        <div class="title_box">
+            <h2 style="color: white; padding: 0px 20px;">{{ category.game_assigned.title }}</h2>
+            <h3 style="color: white; padding: 0px 20px;">Category - {{ category.name }}</h3>
         <div class="question_box">
             <div class="ques_box_left">
                 <p>Current questions:</p>
-                {% for question in category.question_list.all %}
+                {% for question in category.question_list.all|dictsort:"points" %}
                     <div style="display: flex; align-items: center;">
                         <p>({{ question.points }}) <a class="cat_link" href="{% url 'show_ques' question.id %}">
                             {% if question.question|length > 25 %}

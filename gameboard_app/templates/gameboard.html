@@ -18,7 +18,7 @@
                 <div class="cat_box">
                     <h2 class="cat_title">{{ category.name }}</h2>
                     <!-- need to go back and run question list sorted by point values -->
-                    {% for question in category.question_list.all %}
+                    {% for question in category.question_list.all|dictsort:"points" %}
                         <div class="ques_box">
                             <h3><a class="q_link" href="{% url 'show_ques' question.id %}">{{ question.points }}</a></h3>
                         </div>

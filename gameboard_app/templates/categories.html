@@ -17,30 +17,32 @@
                 <a class="back" href="/games">Back</a>
             </div>
         </div>
-        <div style="display: flex; align-items: center;">
-            <h2 style="padding: 0px 20px;">{{ game.title }}</h2>
-            <a href="{% url 'delete_game' game.id %}" class="delete">Delete Gameboard</a>
-        </div>
-        <div id="category_box">
-            <div class="inner_boxes">
-                <h3>Current categories:</h3>
-                {% for cat in game.categories_avail.all %}
-                    <div style="display: flex; align-items: center; margin-left: 10px;">
-                        <p><a class="cat_link" href="{% url 'show_cat_qs' cat.id %}">{{ cat.name }}</a></p>
-                        <!-- <a href="/games/categories/edit/{{ cat.id }}" class="q_edit">Edit</a> -->
-                        <a href="{% url 'delete_cat' cat.id %}" class="q_delete">Delete</a>
-                    </div>
-                {% endfor %}
-                <p style="font-style: italic;">(click to add a question)</p>
+        <div class="title_box">
+            <div style="display: flex; align-items: center;">
+                <h2 style="color: white; padding: 0px 20px;">{{ game.title }}</h2>
+                <a href="{% url 'delete_game' game.id %}" class="delete">Delete Gameboard</a>
             </div>
-            <div class="inner_boxes">
-                <form action="{% url 'new_cat' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="game_id" value="{{ game.id }}">
-                    <h3><label>Add category:</label></h3>
-                        <input class="input" type="text" name="name">
-                    <input class="add" type="submit" value="Add">
-                </form>
+            <div id="category_box">
+                <div class="inner_boxes">
+                    <h3>Current categories:</h3>
+                    {% for cat in game.categories_avail.all %}
+                        <div style="display: flex; align-items: center; margin-left: 10px;">
+                            <p><a class="cat_link" href="{% url 'show_cat_qs' cat.id %}">{{ cat.name }}</a></p>
+                            <!-- <a href="/games/categories/edit/{{ cat.id }}" class="q_edit">Edit</a> -->
+                            <a href="{% url 'delete_cat' cat.id %}" class="q_delete">Delete</a>
+                        </div>
+                    {% endfor %}
+                    <p style="font-style: italic;">(click to add a question)</p>
+                </div>
+                <div class="inner_boxes">
+                    <form action="{% url 'new_cat' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="game_id" value="{{ game.id }}">
+                        <h3><label>Add category:</label></h3>
+                            <input class="input" type="text" name="name">
+                        <input class="add" type="submit" value="Add">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
