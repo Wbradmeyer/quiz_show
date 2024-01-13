@@ -14,21 +14,23 @@
             <h2>{{ question.category_assigned.name }} - {{ question.points }}pts</h2>
             <a class="back" href="{% url 'show_cat_qs' category.id %}">Back</a>
         </div>
-        <div class="inner_boxes">
-            <form action="{% url 'edit_ques' %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="question_id" value="{{ question.id }}">
-                <p><label>Question:</label></p>
-                <textarea name="question" cols="30" rows="4">{{ question.question }}</textarea>
-
-                <p><label>Type answer:</label></p>
-                <input type="text" name="answer" value="{{ question.answer }}">
-                
-                <p><label>Assign a point value:</label></p>
-                <input type="number" name="points" value="{{ question.points }}">
+        <div>
+            <div class="inner_boxes">
+                <form action="{% url 'edit_ques' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="question_id" value="{{ question.id }}">
+                    <p><label>Question:</label></p>
+                    <textarea name="question" cols="40" rows="4" class="input">{{ question.question }}</textarea>
+    
+                    <p><label>Type answer:</label></p>
+                    <input class="input" type="text" name="answer" value="{{ question.answer }}">
                     
-                <input type="submit" value="Update">
-            </form>
+                    <p><label>Assign a point value:</label></p>
+                    <input class="input" type="number" name="points" value="{{ question.points }}">
+                        
+                    <input class="add" type="submit" value="Update">
+                </form>
+            </div>
         </div>
     </div>
 </body>
