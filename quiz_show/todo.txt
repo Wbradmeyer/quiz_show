@@ -1,0 +1,19 @@
+1. When displaying a question, show the answer if the gameboard is not active.
+    - add a Boolean value isActive to Game model, default to False
+
+2. Create a user login/register template.
+    - new app
+    - root route goes to this
+    - views for creation and validation
+    - models for user
+
+3. User model
+    - first_name (CharField)
+    - last_name (CharField)
+    - email (CharField?)
+    - password (CharField?)
+    - (gameboards) ForeignKey in Game model
+    - created_at
+    - updated_at
+
+4. Deletes need an alert to verify choice
