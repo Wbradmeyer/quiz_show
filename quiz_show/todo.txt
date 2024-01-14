@@ -17,3 +17,5 @@
     - updated_at
 
 4. Deletes need an alert to verify choice
+
+5. Background besides beige?
