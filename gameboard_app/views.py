@@ -25,10 +25,10 @@ def index(request):
 def display_select_board(request):
     if 'game_id' in request.session:
         # game = Game.get_by_id(request.session['game_id'])
-        # print(game.isActive)
-        # if game.isActive:
-        #     game.isActive = False
-        #     print(game.isActive)
+        # print(game.is_active)
+        # if game.is_active:
+        #     game.is_active = False
+        #     print(game.is_active)
         del request.session['game_id']
     context = {
         'all_games': Game.get_all()
@@ -63,8 +63,8 @@ def display_question(request, question_id):
 
 def play_gameboard(request, game_id):
     game = Game.get_by_id(id=game_id)
-    # game.isActive = True
-    # print(game.isActive)
+    # game.is_active = True
+    # print(game.is_active)
     context = {
         'game': game,
         'categories': game.categories_avail.all()

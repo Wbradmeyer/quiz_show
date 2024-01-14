@@ -1,5 +1,6 @@
 1. When displaying a question, show the answer if the gameboard is not active.
-    - add a Boolean value isActive to Game model, default to False
+    - add a Boolean value isActive to Game model, default to False ##CHECK
+    - change to snake case ##CHECK
 
 2. Create a user login/register template.
     - new app
