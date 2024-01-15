@@ -12,21 +12,35 @@
         <div class="nav_bar">
             <h1>{{ category.game_assigned.title }}</h1>
             <h2>{{ question.category_assigned.name }} - {{ question.points }}pts</h2>
-            <a class="back" href="{% url 'play' category.game_assigned.id %}">Back</a>
+            {% if category.game_assigned.is_active %}
+                <a class="back" href="{% url 'play' category.game_assigned.id %}">Back</a>
+            {% else %}
+                <a class="back" href="{% url 'show_cat_qs' category.id %}">Back</a>
+            {% endif %}
         </div>
         <div class="question_box">
             <div class="ques_box_left">
                 <p class="ques_text">{{ question.question }}</p>
             </div>
-            <div class="ques_box_right">
-                <label><p style="margin-top: 10px;">Answer:</p></label>
-                <input class="input" type="text" style="margin-bottom: 10px; width: 95%;">
-                <hr>
-                <div style="display: flex; justify-content: space-evenly;">
-                    <p class="back">Player 1</p>
-                    <p class="back">Player 2</p>
+
+            {% if category.game_assigned.is_active %}
+                <div class="ques_box_right">
+                    <label><p style="margin-top: 10px;">Answer:</p></label>
+                    <input class="input" type="text" style="margin-bottom: 10px; width: 95%;">
+                    <hr>
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <p class="back">Player 1</p>
+                        <p class="back">Player 2</p>
+                    </div>
                 </div>
-            </div>
+
+            {% else %}
+                <div class="ques_box_right">
+                    <p class="ques_text">Answer:</p>
+                    <p class="ques_text">{{ question.answer }}</p>
+                </div>
+
+            {% endif %}
         </div>
     </div>
 </body>

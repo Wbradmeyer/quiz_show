@@ -28,6 +28,13 @@ class Game(models.Model):
         game.title = data['title']
         game.save()
         return game
+    
+    @classmethod
+    def update_activity(cls, data):
+        game = cls.objects.get(id=data['id'])
+        game.is_active = data['is_active']
+        game.save()
+        return game
 
     @classmethod
     def destroy(cls, id):
