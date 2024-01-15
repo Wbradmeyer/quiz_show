@@ -18,29 +18,31 @@
                 <a class="back" href="{% url 'show_cat_qs' category.id %}">Back</a>
             {% endif %}
         </div>
-        <div class="question_box">
-            <div class="ques_box_left">
-                <p class="ques_text">{{ question.question }}</p>
-            </div>
-
-            {% if category.game_assigned.is_active %}
-                <div class="ques_box_right">
-                    <label><p style="margin-top: 10px;">Answer:</p></label>
-                    <input class="input" type="text" style="margin-bottom: 10px; width: 95%;">
-                    <hr>
-                    <div style="display: flex; justify-content: space-evenly;">
-                        <p class="back">Player 1</p>
-                        <p class="back">Player 2</p>
+        <div class="title_box">
+            <div class="question_box">
+                <div class="ques_box_left">
+                    <p class="ques_text">{{ question.question }}</p>
+                </div>
+    
+                {% if category.game_assigned.is_active %}
+                    <div class="ques_box_right">
+                        <label><p style="margin-top: 10px;">Answer:</p></label>
+                        <input class="input" type="text" style="margin-bottom: 10px; width: 95%;">
+                        <hr>
+                        <div style="display: flex; justify-content: space-evenly;">
+                            <p class="back">Player 1</p>
+                            <p class="back">Player 2</p>
+                        </div>
                     </div>
-                </div>
-
-            {% else %}
-                <div class="ques_box_right">
-                    <p class="ques_text">Answer:</p>
-                    <p class="ques_text">{{ question.answer }}</p>
-                </div>
-
-            {% endif %}
+    
+                {% else %}
+                    <div class="ques_box_right">
+                        <p class="ques_text">Answer:</p>
+                        <p class="ques_text">{{ question.answer }}</p>
+                    </div>
+    
+                {% endif %}
+            </div>
         </div>
     </div>
 </body>

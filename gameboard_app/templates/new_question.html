@@ -16,39 +16,40 @@
         <div class="title_box">
             <h2 style="color: white; padding: 0px 20px;">{{ category.game_assigned.title }}</h2>
             <h3 style="color: white; padding: 0px 20px;">Category - {{ category.name }}</h3>
-        <div class="question_box">
-            <div class="ques_box_left">
-                <p>Current questions:</p>
-                {% for question in category.question_list.all|dictsort:"points" %}
-                    <div style="display: flex; align-items: center;">
-                        <p>({{ question.points }}) <a class="cat_link" href="{% url 'show_ques' question.id %}">
-                            {% if question.question|length > 25 %}
-                                {{ question.question|slice:":25"}}...
-                            {% else %}
-                                {{ question.question }}
-                            {% endif %}
-                        </a></p>
-                        <a class="q_edit" href="{% url 'edit_ques_page' question.id %}">Edit</a>
-                        <a class="q_delete" href="{% url 'delete_ques' question.id %}">Delete</a>
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="ques_box_right">
-                <h3>Add question</h3>
-                <form action="{% url 'new_question' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="cat_id" value="{{ category.id }}">
-                    <p><label>Type question:</label></p>
-                    <textarea class="input" name="question" cols="35" rows="4"></textarea>
+            <div class="question_box">
+                <div class="ques_box_left">
+                    <p>Current questions:</p>
+                    {% for question in category.question_list.all|dictsort:"points" %}
+                        <div style="display: flex; align-items: center;">
+                            <p>({{ question.points }}) <a class="cat_link" href="{% url 'show_ques' question.id %}">
+                                {% if question.question|length > 25 %}
+                                    {{ question.question|slice:":25"}}...
+                                {% else %}
+                                    {{ question.question }}
+                                {% endif %}
+                            </a></p>
+                            <a class="q_edit" href="{% url 'edit_ques_page' question.id %}">Edit</a>
+                            <a class="q_delete" href="{% url 'delete_ques' question.id %}">Delete</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="ques_box_right">
+                    <h3>Add question</h3>
+                    <form action="{% url 'new_question' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="cat_id" value="{{ category.id }}">
+                        <p><label>Type question:</label></p>
+                        <textarea class="input" name="question" cols="35" rows="4"></textarea>
 
-                    <p><label>Type answer:</label></p>
-                    <input class="input" type="text" name="answer">
-                    
-                    <p><label>Assign a point value:</label></p>
-                    <input class="input" type="number" name="points">
-                    
-                    <input class="add" type="submit" value="Add">
-                </form>
+                        <p><label>Type answer:</label></p>
+                        <input class="input" type="text" name="answer">
+                        
+                        <p><label>Assign a point value:</label></p>
+                        <input class="input" type="number" name="points">
+                        
+                        <input class="add" type="submit" value="Add">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
