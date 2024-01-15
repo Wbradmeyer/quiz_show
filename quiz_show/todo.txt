@@ -5,10 +5,11 @@
     - question back ground card ##CHECK
 
 2. Create a user login/register template.
-    - new app
+    - new app ##CHECK
     - root route goes to this
     - views for creation and validation
     - models for user
+    - protected routes
 
 3. User model
     - first_name (CharField)
