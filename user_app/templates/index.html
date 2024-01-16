@@ -18,17 +18,26 @@
                     <h3>Register</h3>
                     <form action="{% url 'register' %}" method="post">
                         {% csrf_token %}
-                        <label>First Name
+                        <div class="form_field">
+                            <label>First Name:</label>
                             <input class="input" type="text" name="first_name">
-                        </label>
-                        <label>Last Name</label>
-                        <input class="input" type="text" name="last_name">
-                        <label>Email:</label>
-                        <input class="input" type="email" name="email">
-                        <label>Password:</label>
-                        <input class="input" type="password" name="password">
-                        <label>Confirm Password:</label>
-                        <input class="input" type="password" name="confirm_password">
+                        </div>
+                        <div class="form_field">
+                            <label>Last Name:</label>
+                            <input class="input" type="text" name="last_name">
+                        </div>
+                        <div class="form_field">
+                            <label>Email:</label>
+                            <input class="input" type="email" name="email">
+                        </div>
+                        <div class="form_field">
+                            <label>Password:</label>
+                            <input class="input" type="password" name="password">
+                        </div>
+                        <div class="form_field">
+                            <label>Confirm:</label>
+                            <input class="input" type="password" name="confirm_password">
+                        </div>
                         <input class="add" type="submit" value="Register">
                     </form>
                 </div>
@@ -36,10 +45,14 @@
                     <h3>Login</h3>
                     <form action="{% url 'login' %}" method="post">
                         {% csrf_token %}
-                        <label>Email:</label>
-                        <input class="input" type="email" name="email">
-                        <label>Password:</label>
-                        <input class="input" type="password" name="password">
+                        <div class="form_field">
+                            <label>Email:</label>
+                            <input class="input" type="email" name="email">
+                        </div>
+                        <div class="form_field">
+                            <label>Password:</label>
+                            <input class="input" type="password" name="password">
+                        </div>
                         <!-- <label>Confirm Password:</label>
                         <input type="password" name="confirm_password"> -->
                         <input class="add" type="submit" value="Login">
