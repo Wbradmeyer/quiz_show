@@ -18,8 +18,9 @@
                     <h3>Register</h3>
                     <form action="{% url 'register' %}" method="post">
                         {% csrf_token %}
-                        <label>First Name</label>
-                        <input class="input" type="text" name="first_name">
+                        <label>First Name
+                            <input class="input" type="text" name="first_name">
+                        </label>
                         <label>Last Name</label>
                         <input class="input" type="text" name="last_name">
                         <label>Email:</label>
