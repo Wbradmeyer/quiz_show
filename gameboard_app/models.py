@@ -1,9 +1,11 @@
 from django.db import models
+from user_app.models import User
 
 # Create your models here.
 class Game(models.Model):
     title = models.CharField(max_length=255)
     is_active = models.BooleanField(default=False)
+    creator = models.ForeignKey(User, related_name='gameboards', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -20,7 +22,7 @@ class Game(models.Model):
 
     @classmethod
     def add_game(cls, data):
-        return cls.objects.create(title=data['title'])
+        return cls.objects.create(title=data['title'], creator=data['user_id'])
     
     @classmethod
     def update(cls, data):

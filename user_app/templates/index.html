@@ -12,6 +12,20 @@
         <div class="nav_bar">
             <h1>Build-Your-Own Quiz Show</h1>
         </div>
+        {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if request.session.email_error %}
+            <p>{{ request.session.email_error }}</p>
+        {% endif %}
+        {% if request.session.password_error %}
+            <p>{{ request.session.password_error }}</p>
+        {% endif %}
+        <div id="register">
         <div class="title_box">
             <div id="select_game">
                 <div class="inner_boxes">
@@ -36,7 +50,7 @@
                         </div>
                         <div class="form_field">
                             <label>Confirm:</label>
-                            <input class="input" type="password" name="confirm_password">
+                            <input class="input" type="password" name="confirm">
                         </div>
                         <input class="add" type="submit" value="Register">
                     </form>

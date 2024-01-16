@@ -3,7 +3,7 @@ from . models import Game, Category, Question
 
 # Create methods
 def create_game(request):
-    game = Game.add_game({'title': request.POST['title']})
+    game = Game.add_game({'title': request.POST['title'], 'user_id': request.session['user_id']})
     request.session['game_id'] = game.id
     return redirect('/games/categories')
 

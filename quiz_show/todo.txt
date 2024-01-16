@@ -6,12 +6,12 @@
 
 2. Create a user login/register template.
     - new app ##CHECK
-    - root route goes to this
-    - views for creation and validation
-    - models for user
+    - root route goes to this ##CHECK
+    - views for creation and validation ##CHECK
+    - models for user ##CHECK
     - protected routes
 
-3. User model
+3. User model ##CHECK
     - first_name (CharField)
     - last_name (CharField)
     - email (CharField?)
