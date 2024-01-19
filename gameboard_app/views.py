@@ -43,6 +43,7 @@ def select_gameboard(request):
 def display_categories(request):
     if 'user_id' not in request.session:
         return redirect('/')
+    # only allow if session user created game
     context = {
         'game': Game.get_by_id(request.session['game_id']),
     }
@@ -51,6 +52,7 @@ def display_categories(request):
 def display_cat_questions(request, cat_id):
     if 'user_id' not in request.session:
         return redirect('/')
+    # only allow if session user created game
     context = {
         'category': Category.get_by_id(cat_id),
     }
@@ -90,6 +92,7 @@ def play_gameboard(request, game_id):
 def question_edit_page(request, question_id):
     if 'user_id' not in request.session:
         return redirect('/')
+    # only allow if session user created game
     question = Question.get_by_id(id=question_id)
     context = {
         'question': question,
