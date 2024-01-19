@@ -19,10 +19,12 @@ def create_question(request):
     return redirect(f'/games/categories/{category.id}')
 
 # Read methods
-def index(request):
-    return redirect('/games')
+# def index(request):
+#     return redirect('/games')
 
 def display_select_board(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
     if 'game_id' in request.session:
         game = Game.update_activity({'id': request.session['game_id'], 'is_active': False})
         # print(game.is_active)
@@ -39,18 +41,24 @@ def select_gameboard(request):
     return redirect('/games/categories')
 
 def display_categories(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
     context = {
         'game': Game.get_by_id(request.session['game_id']),
     }
     return render(request, 'categories.html', context)
 
 def display_cat_questions(request, cat_id):
+    if 'user_id' not in request.session:
+        return redirect('/')
     context = {
         'category': Category.get_by_id(cat_id),
     }
     return render(request, 'new_question.html', context)
 
 def display_question(request, question_id):
+    if 'user_id' not in request.session:
+        return redirect('/')
     question = Question.get_by_id(id=question_id)
     context = {
         'question': question,
@@ -59,6 +67,8 @@ def display_question(request, question_id):
     return render(request, 'question.html', context)
 
 def play_gameboard(request, game_id):
+    if 'user_id' not in request.session:
+        return redirect('/')
     game = Game.update_activity({'id': game_id, 'is_active': True})
     # print(game.is_active)
     # print(request.session['game_id'])
@@ -78,6 +88,8 @@ def play_gameboard(request, game_id):
 #     return redirect(f'/games/categories/{cat_id}')
 
 def question_edit_page(request, question_id):
+    if 'user_id' not in request.session:
+        return redirect('/')
     question = Question.get_by_id(id=question_id)
     context = {
         'question': question,
@@ -92,14 +104,20 @@ def edit_question(request):
 
 # Delete methods
 def delete_game(request, game_id):
+    if 'user_id' not in request.session:
+        return redirect('/')
     Game.destroy(id=game_id)
     return redirect('/games')
 
 def delete_category(request, cat_id):
+    if 'user_id' not in request.session:
+        return redirect('/')
     Category.destroy(id=cat_id)
     return redirect('/games/categories')
 
 def delete_question(request, question_id):
+    if 'user_id' not in request.session:
+        return redirect('/')
     category = Question.get_by_id(id=question_id).category_assigned
     Question.destroy(id=question_id)
     return redirect(f'/games/categories/{category.id}')
