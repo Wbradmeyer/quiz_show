@@ -23,14 +23,26 @@ body {
     box-shadow: 3px 3px 3px darkslategray;
 }
 
-.title_box {
+#messages, #email_error, #password_error {
+    /* list-style: none; */
+    position: absolute;
     border: 2px solid black;
     border-radius: 10px;
-    background-color:rgb(121, 121, 121, 0.8);
+    background-color: rgb(66, 66, 66);
+    color: white;
+    font-size: 14pt;
+    padding: 35px;
     box-shadow: 3px 3px 3px black;
 }
 
-.add {
+.title_box {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color:rgb(121, 121, 121, 0.75);
+    box-shadow: 3px 3px 3px black;
+}
+
+.add, .delete {
     text-decoration: none;
     border: 1px solid black;
     border-radius: 5pt;
@@ -41,7 +53,7 @@ body {
     cursor: pointer;
 }
 
-.add:active {
+.add:active, .delete:active {
     box-shadow: 0px 0px 3px black;
     transform: translateY(3px);
 }
@@ -49,6 +61,13 @@ body {
 .add {
     background-color: green;
     color: white;
+}
+
+.delete {
+    background-color: rgb(196, 38, 38);
+    color: white;
+    box-shadow: 0px 3px 3px black;
+    margin-top: 10px;
 }
 
 #select_game {

@@ -13,17 +13,24 @@
             <h1>Build-Your-Own Quiz Show</h1>
         </div>
         {% if messages %}
-            <ul class="messages">    
+            <ol id="messages">    
                 {% for message in messages %}    
                     <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
                 {% endfor %}
-            </ul>
+                <button class="delete" onclick="messages.remove()">Okay</button>
+            </ol>
         {% endif %}
         {% if request.session.email_error %}
-            <p>{{ request.session.email_error }}</p>
+            <div id="email_error">
+                <p>{{ request.session.email_error }}</p>
+                <button class="delete" onclick="email_error.remove()">Okay</button>
+            </div>
         {% endif %}
         {% if request.session.password_error %}
-            <p>{{ request.session.password_error }}</p>
+            <div id="password_error">
+                <p>{{ request.session.password_error }}</p>
+                <button class="delete" onclick="password_error.remove()">Okay</button>
+            </div>
         {% endif %}
         <div id="register">
         <div class="title_box">
