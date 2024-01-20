@@ -42,8 +42,6 @@ def display_categories(request):
         return redirect('/')
     # only allow if session user created game
     game = Game.get_by_id(request.session['game_id'])
-    if game.creator.id != request.session['user_id']:
-        return redirect('/games')
     context = {
         'game': game,
     }
