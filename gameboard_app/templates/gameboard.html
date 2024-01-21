@@ -13,6 +13,10 @@
             <h1>Gameboard: {{ game.title }}</h1>
             <a class="back" href="{% url 'main_select' %}">Exit Game</a>
         </div>
+        <!-- player box, add player button prompts name input -->
+        <div>
+            <h2>Player Scores Here</h2>
+        </div>
         <div class="play_box">
             {% for category in categories %}
                 <div class="cat_box">

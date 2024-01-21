@@ -31,7 +31,8 @@ body {
 .title_box {
     border: 2px solid black;
     border-radius: 10px;
-    background-color:rgba(121, 121, 121, 0.7);
+    /* background-color:rgba(121, 121, 121, 0.7); */
+    background-color: rgb(176, 199, 218, 0.7);
     box-shadow: 3px 3px 3px black;
 }
 
@@ -130,7 +131,8 @@ p {
 }
 
 .ques_box {
-    height: 65px;
+    height: 60px;
+    padding-top: 0px;
     margin: auto;
     margin-bottom: 2px;
     background-color: cornflowerblue;

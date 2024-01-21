@@ -9,7 +9,7 @@
     - root route goes to this ##CHECK
     - views for creation and validation ##CHECK
     - models for user ##CHECK
-    - protected routes
+    - protected routes ##CHECK
 
 3. User model ##CHECK
     - first_name (CharField)
@@ -22,4 +22,4 @@
 
 4. Deletes need an alert to verify choice
 
-5. Background besides beige?
+5. Background besides beige? ##CHECK
