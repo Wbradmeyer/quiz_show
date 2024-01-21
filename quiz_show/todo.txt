@@ -1,4 +1,11 @@
 1. Add player(s) to a game and the model?
     - need to keep score
+    - begin with session player_1 (maybe player 2)
+    - also session score_1
+    - button click adds points and returns to gameboard
+        - maybe a "no score" button to return for wrong answer
+    - question played/not_played changes appearance and link
+        - new game resets all to not_played
 
 2. Deletes need an alert to verify choice
+    - AJAX event?
