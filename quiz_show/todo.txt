@@ -1,25 +1,4 @@
-1. When displaying a question, show the answer if the gameboard is not active.
-    - add a Boolean value isActive to Game model, default to False ##CHECK
-    - change to snake case ##CHECK
-    - make a class method to handle the active change ##CHECK
-    - question back ground card ##CHECK
+1. Add player(s) to a game and the model?
+    - need to keep score
 
-2. Create a user login/register template.
-    - new app ##CHECK
-    - root route goes to this ##CHECK
-    - views for creation and validation ##CHECK
-    - models for user ##CHECK
-    - protected routes ##CHECK
-
-3. User model ##CHECK
-    - first_name (CharField)
-    - last_name (CharField)
-    - email (CharField?)
-    - password (CharField?)
-    - (gameboards) ForeignKey in Game model
-    - created_at
-    - updated_at
-
-4. Deletes need an alert to verify choice
-
-5. Background besides beige? ##CHECK
+2. Deletes need an alert to verify choice
