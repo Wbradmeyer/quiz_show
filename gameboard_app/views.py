@@ -18,6 +18,12 @@ def create_question(request):
                         'points': request.POST['points'], 'category_assigned': category})
     return redirect(f'/games/categories/{category.id}')
 
+def add_player(request):
+    game = Game.get_by_id(request.POST['game_id'])
+    request.session['player_1'] = request.POST['player_name']
+    request.session['score_1'] = 0
+    return redirect(f'/games/play/{game.id}')
+
 # Read methods
 def display_select_board(request):
     if 'user_id' not in request.session:
@@ -26,6 +32,8 @@ def display_select_board(request):
         game = Game.update_activity({'id': request.session['game_id'], 'is_active': False})
         # print(game.is_active)
         del request.session['game_id']
+    if 'player_1' in request.session:
+        del request.session['player_1']
     context = {
         'all_games': Game.get_all()
     }
@@ -107,6 +115,15 @@ def edit_question(request):
     Question.update({'id':request.POST['question_id'], 'question':request.POST['question'], 
                     'answer':request.POST['answer'], 'points':request.POST['points']})
     return redirect(f"/games/questions/{request.POST['question_id']}")
+
+def correct_answer(request, points):
+    request.session['score_1'] += points
+    game = Game.get_by_id(request.session['game_id'])
+    return redirect(f'/games/play/{game.id}')
+
+def incorrect_answer(request):
+    game = Game.get_by_id(request.session['game_id'])
+    return redirect(f'/games/play/{game.id}')
 
 # Delete methods
 def delete_game(request, game_id):

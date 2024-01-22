@@ -8,6 +8,7 @@ urlpatterns = [
     # path('update/<int:game_id>', views.edit_game),
     path('delete/<int:game_id>', views.delete_game, name='delete_game'),
     path('play/<int:game_id>', views.play_gameboard, name='play'),
+    path('players', views.add_player, name='add_player'),
     path('categories', views.display_categories, name='show_cats'),
     path('categories/new', views.create_category, name='new_cat'),
     path('categories/<int:cat_id>', views.display_cat_questions, name='show_cat_qs'),
@@ -18,4 +19,6 @@ urlpatterns = [
     path('questions/edit/<int:question_id>', views.question_edit_page, name='edit_ques_page'),
     path('questions/update', views.edit_question, name='edit_ques'),
     path('questions/delete/<int:question_id>', views.delete_question, name='delete_ques'),
+    path('questions/correct/<int:points>', views.correct_answer, name='correct'),
+    path('questions/incorrect', views.incorrect_answer, name='incorrect'),
 ]

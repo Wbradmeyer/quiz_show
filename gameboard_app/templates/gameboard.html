@@ -14,21 +14,37 @@
             <a class="back" href="{% url 'main_select' %}">Exit Game</a>
         </div>
         <!-- player box, add player button prompts name input -->
-        <div>
-            <h2>Player Scores Here</h2>
-        </div>
-        <div class="play_box">
-            {% for category in categories %}
-                <div class="cat_box">
-                    <h2 class="cat_title">{{ category.name }}</h2>
-                    <!-- need to go back and run question list sorted by point values -->
-                    {% for question in category.question_list.all|dictsort:"points" %}
-                        <div class="ques_box">
-                            <h3><a class="q_link" href="{% url 'show_ques' question.id %}">{{ question.points }}</a></h3>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
+        <div style="display: flex; justify-content: space-evenly;">
+            <div class="play_box">
+                {% for category in categories %}
+                    <div class="cat_box">
+                        <h2 class="cat_title">{{ category.name }}</h2>
+                        <!-- need to go back and run question list sorted by point values -->
+                        {% for question in category.question_list.all|dictsort:"points" %}
+                            <div class="ques_box">
+                                <h3><a class="q_link" href="{% url 'show_ques' question.id %}">{{ question.points }}</a></h3>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="player_box">
+                {% if 'player_1' in request.session %}
+                    <h3>{{ request.session.player_1 }}</h3>
+                    <h4>Score: {{ request.session.score_1 }}</h4>
+                {% else %}
+                    <h3>Player Name</h3>
+                    <h4>Score: ???</h4>
+                {% endif %}
+                <hr style="margin-bottom: 20px;">
+                <form action="{% url 'add_player' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="game_id" value="{{ game.id }}">
+                    <label for="player_name">Add a Player</label>
+                    <p><input class="input" type="text" name="player_name"></p>
+                    <p><input class="add" type="submit" value="Add"></p>
+                </form>
+            </div>
         </div>
     </div>
     <p></p>
