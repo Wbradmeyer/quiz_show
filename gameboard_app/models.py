@@ -80,6 +80,7 @@ class Question(models.Model):
     question = models.TextField()
     answer = models.CharField(max_length=255)
     points = models.IntegerField(default=100)
+    played = models.BooleanField(default=False)
     category_assigned = models.ForeignKey(Category, related_name="question_list", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -109,6 +110,13 @@ class Question(models.Model):
         question.save()
         return question
     
+    @classmethod
+    def update_played(cls, data):
+        question = cls.objects.get(id=data['id'])
+        question.played = data['played']
+        question.save()
+        return question
+
     @classmethod
     def destroy(cls, id):
         cls.objects.get(id=id).delete()

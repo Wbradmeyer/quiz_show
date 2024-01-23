@@ -4,7 +4,7 @@
     - also session score_1 ##CHECK
     - button click adds points and returns to gameboard ##CHECK
         - maybe a "no score" button to return for wrong answer ##CHECK
-    - question played/not_played changes appearance and link
+    - question played/not_played changes appearance and link ##CHECK
         - new game resets all to not_played
 
 2. Deletes need an alert to verify choice

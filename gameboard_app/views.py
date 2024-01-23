@@ -116,12 +116,16 @@ def edit_question(request):
                     'answer':request.POST['answer'], 'points':request.POST['points']})
     return redirect(f"/games/questions/{request.POST['question_id']}")
 
-def correct_answer(request, points):
-    request.session['score_1'] += points
+def correct_answer(request, question_id):
+    question = Question.get_by_id(question_id)
+    question.update_played({'id': question.id, 'played': True})
+    request.session['score_1'] += question.points
     game = Game.get_by_id(request.session['game_id'])
     return redirect(f'/games/play/{game.id}')
 
-def incorrect_answer(request):
+def incorrect_answer(request, question_id):
+    question = Question.get_by_id(question_id)
+    question.update_played({'id': question.id, 'played': True})
     game = Game.get_by_id(request.session['game_id'])
     return redirect(f'/games/play/{game.id}')
 

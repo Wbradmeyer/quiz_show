@@ -30,8 +30,8 @@
                         <input class="input" type="text" style="margin-bottom: 10px; width: 95%;">
                         <hr>
                         <div style="display: flex; justify-content: space-evenly;">
-                            <a href="{% url 'correct' question.points %}" class="add">Correct</a>
-                            <a href="{% url 'incorrect' %}" class="delete">Incorrect</a>
+                            <a href="{% url 'correct' question.id %}" class="add">Correct</a>
+                            <a href="{% url 'incorrect' question.id %}" class="delete">Incorrect</a>
                         </div>
                     </div>
     
