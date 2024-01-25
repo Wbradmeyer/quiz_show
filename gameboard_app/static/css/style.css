@@ -145,7 +145,7 @@ p {
 }
 
 .played {
-    background-color: rgb(81, 98, 129);
+    background-color: rgb(81, 98, 129, 0.9);
 }
 
 .input {
@@ -154,10 +154,14 @@ p {
     padding: 5px;
 }
 
-.q_link {
+.q_link, .played_text {
     text-decoration: none;
     color: white;
     font-size: 20pt;
+}
+
+.played_text {
+    color: darkgrey;
 }
 
 .cat_link {
