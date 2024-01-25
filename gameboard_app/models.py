@@ -37,6 +37,13 @@ class Game(models.Model):
         game.is_active = data['is_active']
         game.save()
         return game
+    
+    @classmethod
+    def reset_categories(cls, data):
+        game = cls.objects.get(id=data['id'])
+        for category in game.categories_avail:
+            category.reset_questions({'id': category.id})
+        return
 
     @classmethod
     def destroy(cls, id):
@@ -71,6 +78,13 @@ class Category(models.Model):
         category.save()
         return category
     
+    @classmethod
+    def reset_questions(cls, data):
+        category = cls.objects.get(id=data['id'])
+        for question in category.question_list:
+            question.update_played({'id': question.id, 'played': False})
+        return
+
     @classmethod
     def destroy(cls, id):
         cls.objects.get(id=id).delete()
@@ -115,7 +129,7 @@ class Question(models.Model):
         question = cls.objects.get(id=data['id'])
         question.played = data['played']
         question.save()
-        return question
+        return
 
     @classmethod
     def destroy(cls, id):

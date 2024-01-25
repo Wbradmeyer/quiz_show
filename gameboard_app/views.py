@@ -29,7 +29,9 @@ def display_select_board(request):
     if 'user_id' not in request.session:
         return redirect('/')
     if 'game_id' in request.session:
-        game = Game.update_activity({'id': request.session['game_id'], 'is_active': False})
+        game = Game.get_by_id(request.session['game_id'])
+        game.reset_categories({'id': game.id})
+        game.update_activity({'id': game.id, 'is_active': False})
         # print(game.is_active)
         del request.session['game_id']
     if 'player_1' in request.session:
