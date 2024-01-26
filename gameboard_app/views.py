@@ -45,6 +45,8 @@ def display_select_board(request):
         del request.session['game_id']
     if 'player_1' in request.session:
         del request.session['player_1']
+    if 'player_2' in request.session:
+        del request.session['player_2']
     context = {
         'all_games': Game.get_all()
     }
