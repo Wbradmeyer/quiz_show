@@ -26,8 +26,13 @@
     
                 {% if category.game_assigned.is_active %}
                     <div class="ques_box_right">
-                        <label><p style="margin-top: 10px;">Answer:</p></label>
-                        <input class="input" type="text" style="margin-bottom: 10px; width: 95%;">
+                        <form action="{% url 'answer' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="question_id" value="{{ question.id }}">
+                            <label><p style="margin-top: 10px;">Answer:</p></label>
+                            <input class="input" type="text" style="margin-bottom: 10px; width: 95%;" name="answer">
+                            <input class="back" type="submit" value="Submit">
+                        </form>
                         <hr>
                         <div style="display: flex; justify-content: space-evenly;">
                             <a href="{% url 'correct' question.id %}" class="add">Correct</a>

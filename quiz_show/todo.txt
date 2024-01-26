@@ -3,7 +3,7 @@
     - assign points to specific player
     - with more players, tell who won
 
-2. Allow answer input which compares POST to question.answer
+2. Allow answer input which compares POST to question.answer ##CHECK
 
 3. Deletes need an alert to verify choice
     - AJAX event?

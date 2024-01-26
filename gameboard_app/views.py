@@ -28,6 +28,12 @@ def add_player(request):
         request.session['score_2'] = 0
     return redirect(f'/games/play/{game.id}')
 
+def answer_question(request):
+    question = Question.get_by_id(request.POST['question_id'])
+    if question.answer.lower() == request.POST['answer'].lower():
+        return redirect(f'/games/questions/correct/{question.id}')
+    return redirect(f'/games/questions/incorrect/{question.id}')
+
 # Read methods
 def display_select_board(request):
     Question.reset_all_questions()
