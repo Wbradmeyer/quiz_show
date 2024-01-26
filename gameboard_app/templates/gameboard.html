@@ -13,13 +13,15 @@
             <h1>Gameboard: {{ game.title }}</h1>
             <a class="back" href="{% url 'main_select' %}">Exit Game</a>
         </div>
-        <!-- player box, add player button prompts name input -->
+        
         <div style="display: flex; justify-content: space-evenly;">
             <div class="play_box">
+                {% if game_over %}
+                    <h2 id="game_over">Game Over</h2>
+                {% endif %}
                 {% for category in categories %}
                     <div class="cat_box">
                         <h2 class="cat_title">{{ category.name }}</h2>
-                        <!-- need to go back and run question list sorted by point values -->
                         {% for question in category.question_list.all|dictsort:"points" %}
                             {% if not question.played %}
                                 <div class="ques_box">
@@ -34,8 +36,14 @@
                     </div>
                 {% endfor %}
             </div>
+
             <div class="player_box">
-                {% if 'player_1' in request.session %}
+                {% if 'player_1' in request.session and 'player_2' in request.session %}
+                    <h3>{{ request.session.player_1 }}</h3>
+                    <h4>Score: {{ request.session.score_1 }}</h4>
+                    <h3>{{ request.session.player_2 }}</h3>
+                    <h4>Score: {{ request.session.score_2 }}</h4>
+                {% elif 'player_1' in request.session %}
                     <h3>{{ request.session.player_1 }}</h3>
                     <h4>Score: {{ request.session.score_1 }}</h4>
                 {% else %}

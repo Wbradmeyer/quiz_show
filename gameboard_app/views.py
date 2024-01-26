@@ -20,8 +20,12 @@ def create_question(request):
 
 def add_player(request):
     game = Game.get_by_id(request.POST['game_id'])
-    request.session['player_1'] = request.POST['player_name']
-    request.session['score_1'] = 0
+    if 'player_1' not in request.session:
+        request.session['player_1'] = request.POST['player_name']
+        request.session['score_1'] = 0
+    elif 'player_2' not in request.session:
+        request.session['player_2'] = request.POST['player_name']
+        request.session['score_2'] = 0
     return redirect(f'/games/play/{game.id}')
 
 # Read methods
@@ -81,12 +85,19 @@ def display_question(request, question_id):
 def play_gameboard(request, game_id):
     if 'user_id' not in request.session:
         return redirect('/')
-    game = Game.update_activity({'id': game_id, 'is_active': True})
-    # print(game.is_active)
-    # print(request.session['game_id'])
+    game = Game.get_by_id(game_id)
+    categories = game.categories_avail.all()
+    game_over = True
+    if not game.is_active:
+        game.update_activity({'id': game_id, 'is_active': True})
+    # if there are any questions left, the game is not over
+    for category in categories:
+        if category.question_list.filter(played=False):
+            game_over = False
     context = {
         'game': game,
-        'categories': game.categories_avail.all()
+        'categories': categories,
+        'game_over': game_over
     }
     return render(request, 'gameboard.html', context)
 

@@ -1,12 +1,9 @@
 1. Add player(s) to a game and the model?
-    - need to keep score
-    - begin with session player_1 ##CHECK (maybe player 2)
-    - also session score_1 ##CHECK
-    - button click adds points and returns to gameboard ##CHECK
-        - maybe a "no score" button to return for wrong answer ##CHECK
-    - question played/not_played ##CHECK
-        - changes appearance and link
-        - new game resets all to not_played
+    - multiple players in session #CHECK
+    - assign points to specific player
+    - with more players, tell who won
 
-2. Deletes need an alert to verify choice
+2. Allow answer input which compares POST to question.answer
+
+3. Deletes need an alert to verify choice
     - AJAX event?
