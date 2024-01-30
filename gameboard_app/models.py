@@ -78,6 +78,8 @@ class Category(models.Model):
 
 class Question(models.Model):
     question = models.TextField()
+    # file = models.FileField()
+    # pic = models.ImageField()
     answer = models.CharField(max_length=255)
     points = models.IntegerField(default=100)
     played = models.BooleanField(default=False)

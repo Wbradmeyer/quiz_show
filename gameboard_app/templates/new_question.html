@@ -35,7 +35,7 @@
                 </div>
                 <div class="ques_box_right">
                     <h3>Add question</h3>
-                    <form action="{% url 'new_question' %}" method="post">
+                    <form action="{% url 'new_question' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="cat_id" value="{{ category.id }}">
                         <p><label>Type question:</label></p>

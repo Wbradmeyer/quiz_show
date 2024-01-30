@@ -6,7 +6,11 @@
 2. Allow answer input which compares POST to question.answer ##CHECK
 
 3. Deletes need an alert to verify choice
-    - AJAX event?
+    - AJAX event
+    - add script tag
+    - delete button is an onclick event
+    - script file triggers an alert
+    
 
 4. User can upload files (pdf, jpeg, etc.) for questions
     - need to accept files and store something in database

@@ -16,6 +16,9 @@ def create_question(request):
     category = Category.get_by_id(request.POST['cat_id'])
     Question.add_question({'question': request.POST['question'], 'answer': request.POST['answer'],
                         'points': request.POST['points'], 'category_assigned': category})
+    form = Question(request.POST, request.FILES)
+    if form.is_valid():
+        form.save()
     return redirect(f'/games/categories/{category.id}')
 
 def add_player(request):
