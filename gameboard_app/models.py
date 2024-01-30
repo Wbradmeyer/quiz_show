@@ -78,8 +78,8 @@ class Category(models.Model):
 
 class Question(models.Model):
     question = models.TextField()
-    file = models.FileField(upload_to='question_files/', blank=True, default='')
-    pic = models.ImageField(upload_to='question_images/', blank=True, default='')
+    file = models.FileField(upload_to='question_files/', null=True, blank=True, default='')
+    pic = models.ImageField(upload_to='question_images/', null=True, blank=True, default='')
     answer = models.CharField(max_length=255)
     points = models.IntegerField(default=100)
     played = models.BooleanField(default=False)
@@ -100,12 +100,16 @@ class Question(models.Model):
     
     @classmethod
     def add_question(cls, data):
-        return cls.objects.create(question=data['question'], 
-                                file=data.get('file'),
-                                pic=data.get('pic'),
-                                answer=data['answer'], 
-                                points=data['points'], 
-                                category_assigned=data['category_assigned'])
+        file_form = data.pop('file_form', None)
+        question =  cls.objects.create(question=data['question'],
+                                    answer=data['answer'], 
+                                    points=data['points'], 
+                                    category_assigned=data['category_assigned'])
+        
+        if file_form and file_form.is_valid():
+            question.file = file_form.cleaned_data['file']
+            question.save()
+        return question
     
     @classmethod
     def update(cls, data):

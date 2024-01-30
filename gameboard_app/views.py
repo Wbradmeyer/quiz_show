@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . models import Game, Category, Question
+from . forms import UploadFileForm
 
 # Create methods
 def create_game(request):
@@ -14,11 +15,12 @@ def create_category(request):
 
 def create_question(request):
     category = Category.get_by_id(request.POST['cat_id'])
-    Question.add_question({'question': request.POST['question'], 'answer': request.POST['answer'],
-                        'points': request.POST['points'], 'category_assigned': category})
-    form = Question(request.POST, request.FILES)
-    if form.is_valid():
-        form.save()
+    file_form = UploadFileForm(request.POST, request.FILES)
+    Question.add_question({'question': request.POST['question'], 
+                        'answer': request.POST['answer'],
+                        'points': request.POST['points'], 
+                        'category_assigned': category,
+                        'file': file_form})
     return redirect(f'/games/categories/{category.id}')
 
 def add_player(request):
