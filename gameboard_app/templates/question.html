@@ -23,7 +23,9 @@
                 <div class="ques_box_left">
                     <p class="ques_text">{{ question.question }}</p>
                     {% if question.file %}
-                        <p>{{ question.file }}</p>
+                        {% if question.file.url %}
+                            <a href="{{ question.file.url }}">{{ question.file.url }}</a>
+                        {% endif %}
                     {% endif %}
                 </div>
     
