@@ -1,5 +1,6 @@
 from django.db import models
 from user_app.models import User
+# from . forms import UploadFileForm
 
 # Create your models here.
 class Game(models.Model):
@@ -100,15 +101,17 @@ class Question(models.Model):
     
     @classmethod
     def add_question(cls, data):
-        file_form = data.pop('file_form', None)
+        file_form = data['file']
         question =  cls.objects.create(question=data['question'],
                                     answer=data['answer'], 
                                     points=data['points'], 
                                     category_assigned=data['category_assigned'])
-        
-        if file_form and file_form.is_valid():
-            question.file = file_form.cleaned_data['file']
-            question.save()
+        if file_form:
+            if file_form.is_valid():
+                question.file = file_form.cleaned_data['file']
+                question.save()
+            else:
+                print('*************NOT VALID********8')
         return question
     
     @classmethod
