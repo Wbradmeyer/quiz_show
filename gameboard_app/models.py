@@ -1,11 +1,12 @@
 from django.db import models
 from user_app.models import User
+# from . forms import UploadFileForm
 
 # Create your models here.
 class Game(models.Model):
     title = models.CharField(max_length=255)
     is_active = models.BooleanField(default=False)
-    creator = models.ForeignKey(User, related_name='gameboards', on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, related_name='gameboards', on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -45,7 +46,7 @@ class Game(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
-    game_assigned = models.ForeignKey(Game, related_name="categories_avail", on_delete = models.CASCADE)
+    game_assigned = models.ForeignKey(Game, related_name="categories_avail", on_delete = models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -78,10 +79,12 @@ class Category(models.Model):
 
 class Question(models.Model):
     question = models.TextField()
+    file = models.FileField(upload_to='question_files/', null=True, blank=True, default='')
+    pic = models.ImageField(upload_to='question_images/', null=True, blank=True, default='')
     answer = models.CharField(max_length=255)
     points = models.IntegerField(default=100)
     played = models.BooleanField(default=False)
-    category_assigned = models.ForeignKey(Category, related_name="question_list", on_delete = models.CASCADE)
+    category_assigned = models.ForeignKey(Category, related_name="question_list", on_delete = models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -98,8 +101,18 @@ class Question(models.Model):
     
     @classmethod
     def add_question(cls, data):
-        return cls.objects.create(question=data['question'], answer=data['answer'], 
-                                points=data['points'], category_assigned=data['category_assigned'])
+        file_form = data['file']
+        question =  cls.objects.create(question=data['question'],
+                                    answer=data['answer'], 
+                                    points=data['points'], 
+                                    category_assigned=data['category_assigned'])
+        if file_form:
+            if file_form.is_valid():
+                question.file = file_form.cleaned_data['file']
+                question.save()
+            else:
+                print('*************NOT VALID********8')
+        return question
     
     @classmethod
     def update(cls, data):

@@ -22,6 +22,11 @@
             <div class="question_box">
                 <div class="ques_box_left">
                     <p class="ques_text">{{ question.question }}</p>
+                    {% if question.file %}
+                        {% if question.file.url %}
+                            <a href="{{ question.file.url }}">{{ question.file.url }}</a>
+                        {% endif %}
+                    {% endif %}
                 </div>
     
                 {% if category.game_assigned.is_active %}

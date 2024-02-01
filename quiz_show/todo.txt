@@ -6,4 +6,15 @@
 2. Allow answer input which compares POST to question.answer ##CHECK
 
 3. Deletes need an alert to verify choice
-    - AJAX event?
+    - AJAX event
+    - add script tag
+    - delete button is an onclick event
+    - script file triggers an alert
+    
+
+4. User can upload files (pdf, jpeg, etc.) for questions
+    - need to accept files and store something in database
+    - look to see if I need another folder for storing files and point to them
+    - display on question page; format, sizing of image?
+    - create forms.py and/or use a FileField in model
+    - make a new branch and follow Django documentation
