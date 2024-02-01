@@ -35,11 +35,17 @@
                 </div>
                 <div class="ques_box_right">
                     <h3>Add question</h3>
-                    <form action="{% url 'new_question' %}" method="post">
+                    <form action="{% url 'new_question' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" name="cat_id" value="{{ category.id }}">
                         <p><label>Type question:</label></p>
                         <textarea class="input" name="question" cols="35" rows="4"></textarea>
+                        
+                        <p><label>Add a file:</label></p>
+                        <input type="file" name="file">
+
+                        <p><label for="pic">Add an image:</label></p>
+                        <input type="image" name="pic" id="pic">
 
                         <p><label>Type answer:</label></p>
                         <input class="input" type="text" name="answer">
