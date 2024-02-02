@@ -19,8 +19,9 @@ def create_question(request):
     Question.add_question({'question': request.POST['question'], 
                         'answer': request.POST['answer'],
                         'points': request.POST['points'], 
-                        'category_assigned': category,
-                        'file': file_form})
+                        'category_assigned': category, 
+                        # 'file': file_form})
+                        'pic': file_form})
     return redirect(f'/games/categories/{category.id}')
 
 def add_player(request):

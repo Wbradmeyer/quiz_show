@@ -79,7 +79,7 @@ class Category(models.Model):
 
 class Question(models.Model):
     question = models.TextField()
-    file = models.FileField(upload_to='question_files/', null=True, blank=True, default='')
+    # file = models.FileField(upload_to='question_files/', null=True, blank=True, default='')
     pic = models.ImageField(upload_to='question_images/', null=True, blank=True, default='')
     answer = models.CharField(max_length=255)
     points = models.IntegerField(default=100)
@@ -101,14 +101,16 @@ class Question(models.Model):
     
     @classmethod
     def add_question(cls, data):
-        file_form = data['file']
+        # file_form = data['file']
+        pic_form = data['pic']
         question =  cls.objects.create(question=data['question'],
                                     answer=data['answer'], 
                                     points=data['points'], 
                                     category_assigned=data['category_assigned'])
-        if file_form:
-            if file_form.is_valid():
-                question.file = file_form.cleaned_data['file']
+        if pic_form:
+            if pic_form.is_valid():
+                # question.file = file_form.cleaned_data['file']
+                question.pic = pic_form.cleaned_data['pic']
                 question.save()
             else:
                 print('*************NOT VALID********8')
