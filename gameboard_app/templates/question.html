@@ -24,7 +24,7 @@
                     <p class="ques_text">{{ question.question }}</p>
                     {% if question.pic %}
                         {% if question.pic.url %}
-                            <img src="{{ question.pic.url }}" style="max-width: 300px; max-height: 300px;"></img>
+                            <img src="{{ question.pic.url }}" class="ques_img"></img>
                             <!-- <a href="{{ question.file.url }}">{{ question.file.url }}</a> -->
                         {% endif %}
                     {% endif %}
