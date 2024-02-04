@@ -29,9 +29,12 @@ def add_player(request):
     if 'player_1' not in request.session:
         request.session['player_1'] = request.POST['player_name']
         request.session['score_1'] = 0
+        request.session['player_count'] = 1
+        request.session['turn'] = 'player_1'
     elif 'player_2' not in request.session:
         request.session['player_2'] = request.POST['player_name']
         request.session['score_2'] = 0
+        request.session['player_count'] = 2
     return redirect(f'/games/play/{game.id}')
 
 def answer_question(request):
@@ -145,13 +148,22 @@ def edit_question(request):
 def correct_answer(request, question_id):
     question = Question.get_by_id(question_id)
     question.update_played({'id': question.id, 'played': True})
-    request.session['score_1'] += question.points
+    if request.session['turn'] == 'player_two':
+        request.session['score_2'] += question.points
+    else:
+        request.session['score_1'] += question.points
     game = Game.get_by_id(request.session['game_id'])
     return redirect(f'/games/play/{game.id}')
 
 def incorrect_answer(request, question_id):
     question = Question.get_by_id(question_id)
-    question.update_played({'id': question.id, 'played': True})
+    if request.session['turn'] == 'player_one':
+        request.session['turn'] == 'player_two'
+    elif request.session['turn'] == 'player_two':
+        request.session['turn'] == 'player_one'
+    if not question.played:
+        question.update_played({'id': question.id, 'played': True})
+        return redirect(f'/games/questions/{question.id}')
     game = Game.get_by_id(request.session['game_id'])
     return redirect(f'/games/play/{game.id}')
 
