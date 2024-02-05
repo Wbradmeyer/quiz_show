@@ -13,12 +13,30 @@
             <h1>Gameboard: {{ game.title }}</h1>
             <a class="back" href="{% url 'main_select' %}">Exit Game</a>
         </div>
-        
+
         <div style="display: flex; justify-content: space-evenly;">
+
+        <!-- hide gameboard until there is a player to score -->
+        {% if 'player_count' not in request.session %}
+
+        {% else %}
             <div class="play_box">
+                <!-- display the winner when the game is over -->
                 {% if game_over %}
-                    <h2 id="game_over">Game Over</h2>
+                    {% if request.session.player_count == 1 %}
+                        <div id="game_over">
+                            <h2>Game Over</h2>
+                            <h3>Score: {{ request.session.score_1 }}</h3>
+                        </div>
+                    {% else %}
+                        <div id="game_over">
+                            <h2>Game Over</h2>
+                            <h3>{{ winner }} Wins!!!</h3>
+                        </div>
+                    {% endif %}
                 {% endif %}
+
+                <!-- show the game board and enable play -->
                 {% for category in categories %}
                     <div class="cat_box">
                         <h2 class="cat_title">{{ category.name }}</h2>
@@ -36,7 +54,9 @@
                     </div>
                 {% endfor %}
             </div>
+        {% endif %}
 
+            <!-- box for adding players and keeping score -->
             <div class="player_box">
                 {% if 'player_1' in request.session and 'player_2' in request.session %}
                     <h3>{{ request.session.player_1 }}</h3>

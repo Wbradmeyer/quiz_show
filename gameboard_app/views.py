@@ -30,11 +30,11 @@ def add_player(request):
         request.session['player_1'] = request.POST['player_name']
         request.session['score_1'] = 0
         request.session['player_count'] = 1
-        request.session['turn'] = 'player_1'
     elif 'player_2' not in request.session:
         request.session['player_2'] = request.POST['player_name']
         request.session['score_2'] = 0
-        request.session['player_count'] = 2
+        request.session['player_count'] += 1
+        request.session['turn'] = 1
     return redirect(f'/games/play/{game.id}')
 
 def answer_question(request):
@@ -43,19 +43,28 @@ def answer_question(request):
         return redirect(f'/games/questions/correct/{question.id}')
     return redirect(f'/games/questions/incorrect/{question.id}')
 
+
 # Read methods
 def display_select_board(request):
     Question.reset_all_questions()
     if 'user_id' not in request.session:
         return redirect('/')
+    # clear all session items associated with playing a game
     if 'game_id' in request.session:
         Game.update_activity({'id': request.session['game_id'], 'is_active': False})
-        # print(game.is_active)
         del request.session['game_id']
     if 'player_1' in request.session:
         del request.session['player_1']
+    if 'score_1' in request.session:
+        del request.session['score_1']
     if 'player_2' in request.session:
         del request.session['player_2']
+    if 'score_2' in request.session:
+        del request.session['score_2']
+    if 'player_count' in request.session:
+        del request.session['player_count']
+    if 'turn' in request.session:
+        del request.session['turn']
     context = {
         'all_games': Game.get_all()
     }
@@ -105,6 +114,16 @@ def play_gameboard(request, game_id):
     game = Game.get_by_id(game_id)
     categories = game.categories_avail.all()
     game_over = True
+    # track the leader/winner
+    leader = ''
+    if 'player_count' in request.session and request.session['player_count'] == 2:
+        if request.session['score_1'] > request.session['score_2']:
+            leader = request.session['player_1']
+        elif request.session['score_2'] > request.session['score_1']:
+            leader = request.session['player_2']
+        else:
+            leader = "It's a tie."
+
     if not game.is_active:
         game.update_activity({'id': game_id, 'is_active': True})
     # if there are any questions left, the game is not over
@@ -114,9 +133,11 @@ def play_gameboard(request, game_id):
     context = {
         'game': game,
         'categories': categories,
-        'game_over': game_over
+        'game_over': game_over,
+        'winner': leader
     }
     return render(request, 'gameboard.html', context)
+
 
 # Update methods
 # def edit_game(request, game_id):
@@ -148,7 +169,7 @@ def edit_question(request):
 def correct_answer(request, question_id):
     question = Question.get_by_id(question_id)
     question.update_played({'id': question.id, 'played': True})
-    if request.session['turn'] == 'player_two':
+    if 'turn' in request.session and request.session['turn'] == 2:
         request.session['score_2'] += question.points
     else:
         request.session['score_1'] += question.points
@@ -157,15 +178,23 @@ def correct_answer(request, question_id):
 
 def incorrect_answer(request, question_id):
     question = Question.get_by_id(question_id)
-    if request.session['turn'] == 'player_one':
-        request.session['turn'] == 'player_two'
-    elif request.session['turn'] == 'player_two':
-        request.session['turn'] == 'player_one'
-    if not question.played:
+    # only change turns if player count is 2
+    if request.session['player_count'] == 2:
+        if request.session['turn'] == 1:
+            request.session['turn'] += 1
+        elif request.session['turn'] == 2:
+            request.session['turn'] -= 1
+        print(request.session['turn'])
+        if not question.played:
+            question.update_played({'id': question.id, 'played': True})
+            return redirect(f'/games/questions/{question.id}')
+        game = Game.get_by_id(request.session['game_id'])
+        return redirect(f'/games/play/{game.id}')
+    else:
         question.update_played({'id': question.id, 'played': True})
-        return redirect(f'/games/questions/{question.id}')
-    game = Game.get_by_id(request.session['game_id'])
-    return redirect(f'/games/play/{game.id}')
+        game = Game.get_by_id(request.session['game_id'])
+        return redirect(f'/games/play/{game.id}')
+
 
 # Delete methods
 def delete_game(request, game_id):
