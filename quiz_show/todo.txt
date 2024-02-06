@@ -1,15 +1,4 @@
-1. Add player(s) to a game and the model?
-    - multiple players in session #CHECK
-    - assign points to specific player
-        - put a total player count in session, increment up to 2 max for now
-            - add print statement
-        - if count is 2, can change whose turn it is on wrong answer
-            - add print statement
-        - else it stays player 1
-    - with more players, tell who won
-    - check point values, all have reset to 100
-
-2. Deletes need an alert to verify choice
+1. Deletes need an alert to verify choice
     - AJAX event
     - add script tag
     - delete button is an onclick event
