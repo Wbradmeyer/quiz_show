@@ -30,13 +30,13 @@
                                 {% endif %}
                             </a></p>
                             <a class="q_edit" href="{% url 'edit_ques_page' question.id %}">Edit</a>
-                            <button class="q_delete" onclick="displayPopup(event)">Delete</button>
+                            <button class="q_delete" onclick="displayPopup('{{ question.id }}')">Delete</button>
                             <!-- <a class="q_delete" href="{% url 'delete_ques' question.id %}">Delete</a> -->
-                            <div id="delete_confirm">
+                            <div id="delete_confirm_{{ question.id }}">
                                 <p>Are you sure you want to</p>
                                 <p>delete this question?</p>
                                 <div style="display: flex;">
-                                    <button class="q_edit" onclick="hidePopup(event)">No</button>
+                                    <button class="q_edit" onclick="hidePopup('{{ question.id }}')">No</button>
                                     <a class="q_delete" href="{% url 'delete_ques' question.id %}">Yes</a>
                                 </div>
                             </div>

@@ -194,7 +194,7 @@ p {
     color: white;
 }
 
-#delete_confirm {
+div[id^="delete_confirm_"] {
     display: none;
     z-index: 1;
     position: absolute;

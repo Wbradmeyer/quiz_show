@@ -1,9 +1,7 @@
-const displayPopup = (e) => {
-    e.preventDefault()
-    document.getElementById('delete_confirm').style.display = 'block'
+const displayPopup = (questionId) => {
+    document.getElementById(`delete_confirm_${questionId}`).style.display = 'block'
 }
 
-const hidePopup = (e) => {
-    e.preventDefault()
-    document.getElementById('delete_confirm').style.display = 'none'
+const hidePopup = (questionId) => {
+    document.getElementById(`delete_confirm_${questionId}`).style.display = 'none'
 }
