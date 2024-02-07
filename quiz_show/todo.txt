@@ -1,6 +1,2 @@
 1. Deletes need an alert to verify choice
-    - add script tag
-    - delete button is an onclick event
-    - create a popup and set display to 'none'
-    - onclick sets display to 'block'
-    - move the url to be the popup, buttons reset display
+    - need to double check which Q is going to be deleted
