@@ -6,6 +6,7 @@
     <title>Manage Categories</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
 </head>
 <body>
     <div class="wrapper">
@@ -29,7 +30,16 @@
                         <div style="display: flex; align-items: center; margin-left: 10px;">
                             <p><a class="cat_link" href="{% url 'show_cat_qs' cat.id %}">{{ cat.name }}</a></p>
                             <!-- <a href="/games/categories/edit/{{ cat.id }}" class="q_edit">Edit</a> -->
-                            <a href="{% url 'delete_cat' cat.id %}" class="q_delete">Delete</a>
+                            <!-- <a href="{% url 'delete_cat' cat.id %}" class="q_delete">Delete</a> -->
+                            <button class="q_delete" onclick="displayPopup('{{ cat.id }}')">Delete</button>
+                        </div>
+                        <div id="delete_confirm_{{ cat.id }}">
+                            <p>Are you sure you want to</p>
+                            <p>delete this category?</p>
+                            <div style="display: flex;">
+                                <button class="q_edit" onclick="hidePopup('{{ cat.id }}')">No</button>
+                                <a class="q_delete" href="{% url 'delete_cat' cat.id %}">Yes</a>
+                            </div>
                         </div>
                     {% endfor %}
                     <p style="font-style: italic;">(click to add a question)</p>
