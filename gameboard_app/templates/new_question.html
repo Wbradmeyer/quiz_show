@@ -31,7 +31,6 @@
                             </a></p>
                             <a class="q_edit" href="{% url 'edit_ques_page' question.id %}">Edit</a>
                             <button class="q_delete" onclick="displayPopup('{{ question.id }}')">Delete</button>
-                            <!-- <a class="q_delete" href="{% url 'delete_ques' question.id %}">Delete</a> -->
                             <div id="delete_confirm_{{ question.id }}">
                                 <p>Are you sure you want to</p>
                                 <p>delete this question?</p>

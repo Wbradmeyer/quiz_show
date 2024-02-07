@@ -13,7 +13,6 @@
         <div class="nav_bar">
             <h1>Category Setup</h1>
             <div>
-                <!-- <a class="play" href="/games/play/{{ game.id }}">Play This Gameboard</a> -->
                 <a class="play" href="{% url 'play' game.id %}">Play This Gameboard</a>
                 <a class="back" href="/games">Back</a>
             </div>
@@ -21,7 +20,16 @@
         <div class="title_box">
             <div style="display: flex; align-items: center;">
                 <h2 style="color: black; padding: 0px 20px;">{{ game.title }}</h2>
-                <a href="{% url 'delete_game' game.id %}" class="delete">Delete Gameboard</a>
+                <!-- <a href="{% url 'delete_game' game.id %}" class="delete">Delete Gameboard</a> -->
+                <button class="delete" onclick="displayPopup('{{ game.id }}')">Delete Gameboard</button>
+                <div id="delete_confirm_{{ game.id }}">
+                    <p>Are you sure you want to</p>
+                    <p>delete this gameboard?</p>
+                    <div style="display: flex;">
+                        <button class="q_edit" onclick="hidePopup('{{ game.id }}')">No</button>
+                        <a class="q_delete" href="{% url 'delete_game' game.id %}">Yes</a>
+                    </div>
+                </div>
             </div>
             <div id="category_box">
                 <div class="inner_boxes">
@@ -30,7 +38,6 @@
                         <div style="display: flex; align-items: center; margin-left: 10px;">
                             <p><a class="cat_link" href="{% url 'show_cat_qs' cat.id %}">{{ cat.name }}</a></p>
                             <!-- <a href="/games/categories/edit/{{ cat.id }}" class="q_edit">Edit</a> -->
-                            <!-- <a href="{% url 'delete_cat' cat.id %}" class="q_delete">Delete</a> -->
                             <button class="q_delete" onclick="displayPopup('{{ cat.id }}')">Delete</button>
                         </div>
                         <div id="delete_confirm_{{ cat.id }}">
