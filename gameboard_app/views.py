@@ -202,6 +202,7 @@ def delete_game(request, game_id):
     # only allow if session user created game AND is logged in
     if 'user_id' not in request.session or game.creator.id != request.session['user_id']:
         return redirect('/')
+    del request.session['game_id']
     Game.destroy(id=game_id)
     return redirect('/games')
 

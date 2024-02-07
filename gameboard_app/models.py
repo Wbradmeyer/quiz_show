@@ -23,7 +23,8 @@ class Game(models.Model):
 
     @classmethod
     def add_game(cls, data):
-        return cls.objects.create(title=data['title'], creator=data['user_id'])
+        user = User.get_by_id(data['user_id'])
+        return cls.objects.create(title=data['title'], creator=user)
     
     @classmethod
     def update(cls, data):
