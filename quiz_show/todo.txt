@@ -1,5 +1,6 @@
 1. Deletes need an alert to verify choice
-    - AJAX event
     - add script tag
     - delete button is an onclick event
-    - script file triggers an alert
+    - create a popup and set display to 'none'
+    - onclick sets display to 'block'
+    - move the url to be the popup, buttons reset display

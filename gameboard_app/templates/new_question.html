@@ -6,6 +6,7 @@
     <title>Add Question</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
 </head>
 <body>
     <div class="wrapper">
@@ -29,7 +30,16 @@
                                 {% endif %}
                             </a></p>
                             <a class="q_edit" href="{% url 'edit_ques_page' question.id %}">Edit</a>
-                            <a class="q_delete" href="{% url 'delete_ques' question.id %}">Delete</a>
+                            <button class="q_delete" onclick="displayPopup(event)">Delete</button>
+                            <!-- <a class="q_delete" href="{% url 'delete_ques' question.id %}">Delete</a> -->
+                            <div id="delete_confirm">
+                                <p>Are you sure you want to</p>
+                                <p>delete this question?</p>
+                                <div style="display: flex;">
+                                    <button class="q_edit" onclick="hidePopup(event)">No</button>
+                                    <a class="q_delete" href="{% url 'delete_ques' question.id %}">Yes</a>
+                                </div>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
