@@ -44,6 +44,14 @@
                             <a href="{% url 'correct' question.id %}" class="add">Correct</a>
                             <a href="{% url 'incorrect' question.id %}" class="delete">Incorrect</a>
                         </div>
+                        {% if 'turn' in request.session %}
+                            <hr>
+                            {% if request.session.turn == 1 %}
+                                <h3>It is {{ request.session.player_1 }}'s turn.</h3>
+                            {% else %}
+                                <h3>It is {{ request.session.player_2 }}'s turn.</h3>
+                            {% endif %}
+                        {% endif %}
                     </div>
     
                 {% else %}
