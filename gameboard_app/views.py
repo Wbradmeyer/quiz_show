@@ -83,6 +83,7 @@ def display_categories(request):
     game = Game.get_by_id(request.session['game_id'])
     context = {
         'game': game,
+        'user_id': request.session['user_id'],
     }
     return render(request, 'categories.html', context)
 
