@@ -17,8 +17,8 @@
                 <a class="back" href="/games">Back</a>
             </div>
         </div>
-        <div class="title_box">
-            {% if game.creator.id == user_id %}
+        {% if game.creator.id == user_id %}
+            <div class="title_box">
                 <div style="display: flex; align-items: center;">
                     <button class="delete" onclick="displayPopup('{{ game.id }}')" style="margin: 20px 0px 0px 20px;">Delete Gameboard</button>
                     <div id="delete_confirm_{{ game.id }}">
@@ -60,8 +60,8 @@
                         </form>
                     </div>
                 </div>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
     </div>
 </body>
 </html>
