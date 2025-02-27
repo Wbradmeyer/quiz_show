@@ -1,5 +1,4 @@
 body {
-    /* background-color:beige; */
     background-image: url("../images/game-show-background-opt1.jpg");
     background-position: center;
     background-size: cover;
@@ -8,12 +7,10 @@ body {
 .wrapper {
     width: 800px;
     margin: auto;
-    /* border: 1px solid black; */
 }
 
 .game_wrapper {
     width: auto;
-    /* border: 1px solid black; */
 }
 
 .nav_bar {
@@ -28,11 +25,15 @@ body {
     box-shadow: 2px 2px 10px darkslategray;
 }
 
-.title_box, .header_card {
+.title_box {
     border: 1px solid black;
     border-radius: 10px;
     background-color: rgb(176, 199, 218, 0.7);
     box-shadow: 2px 2px 10px black;
+}
+
+.header_card {
+    border: 1px solid black;
 }
 
 .back, .delete, .q_edit, .q_delete, .play, .add {
@@ -120,12 +121,10 @@ p {
 }
 
 .cat_box {
-    /* border: solid red 1px; */
     padding: 0px 20px 20px;
 }
 
 .cat_title, .ques_box, .played {
-    /* border: solid 1px black; */
     padding: 10px;
     text-align: center;
     width: 150px;
@@ -133,7 +132,6 @@ p {
     background-color:rgb(48, 87, 161);
     color: white;
     box-shadow: 0px 0px 10px darkslategray;
-    /* box-shadow: 0px 0px 3px 2px darkslategray; */
 }
 
 .ques_box, .played {
