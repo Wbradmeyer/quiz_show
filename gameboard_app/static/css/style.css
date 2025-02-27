@@ -28,7 +28,7 @@ body {
     box-shadow: 2px 2px 10px darkslategray;
 }
 
-.title_box {
+.title_box, .header_card {
     border: 1px solid black;
     border-radius: 10px;
     background-color: rgb(176, 199, 218, 0.7);
