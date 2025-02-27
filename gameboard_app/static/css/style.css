@@ -95,6 +95,14 @@ body {
     width: 40%;
 }
 
+.header_card > h2 {
+    margin-bottom: 5px;
+}
+
+.header_card > h3 {
+    margin-top: 5px;
+}
+
 .ques_box_left {
     width: 60%;
 }
