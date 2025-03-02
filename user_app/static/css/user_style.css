@@ -1,5 +1,4 @@
 body {
-    /* background-color:beige; */
     background-image: url("../images/game-show-background-opt1.jpg");
     background-position: center;
     background-size: cover;
@@ -8,7 +7,6 @@ body {
 .wrapper {
     width: 800px;
     margin: auto;
-    /* border: 1px solid black; */
 }
 
 .nav_bar {
@@ -24,7 +22,6 @@ body {
 }
 
 #messages, #email_error, #password_error {
-    /* list-style: none; */
     position: absolute;
     border: 1px solid black;
     border-radius: 10px;
