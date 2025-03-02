@@ -212,5 +212,5 @@ div[id^="delete_confirm_"] {
     color: white;
     font-size: 14pt;
     padding: 40px;
-    box-shadow: 0px 0px 20px 7px gold;
+    box-shadow: 0px 0px 20px 7px rgb(30, 57, 74);
 }
