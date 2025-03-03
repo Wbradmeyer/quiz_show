@@ -2,7 +2,7 @@ from django.db import models
 from user_app.models import User
 # from . forms import UploadFileForm
 
-# Create your models here.
+# Add Game validator here
 class Game(models.Model):
     title = models.CharField(max_length=255)
     is_active = models.BooleanField(default=False)
@@ -44,7 +44,7 @@ class Game(models.Model):
     def destroy(cls, id):
         cls.objects.get(id=id).delete()
 
-
+# Add Category validator here
 class Category(models.Model):
     name = models.CharField(max_length=255)
     game_assigned = models.ForeignKey(Game, related_name="categories_avail", on_delete = models.CASCADE, default=1)
@@ -77,7 +77,7 @@ class Category(models.Model):
     def destroy(cls, id):
         cls.objects.get(id=id).delete()
 
-
+# Add question validator here
 class Question(models.Model):
     question = models.TextField()
     # file = models.FileField(upload_to='question_files/', null=True, blank=True, default='')

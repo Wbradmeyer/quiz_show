@@ -4,16 +4,19 @@ from . forms import UploadFileForm
 
 # Create methods
 def create_game(request):
+    # add validations here
     game = Game.add_game({'title': request.POST['title'], 'user_id': request.session['user_id']})
     request.session['game_id'] = game.id
     return redirect('/games/categories')
 
 def create_category(request):
+    # add validations here
     game = Game.get_by_id(request.POST['game_id'])
     Category.add_category({'name': request.POST['name'], 'game_assigned': game})
     return redirect('/games/categories')
 
 def create_question(request):
+    # add validations here
     category = Category.get_by_id(request.POST['cat_id'])
     file_form = UploadFileForm(request.POST, request.FILES)
     Question.add_question({'question': request.POST['question'], 
