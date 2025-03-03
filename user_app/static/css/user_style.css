@@ -32,6 +32,10 @@ body {
     box-shadow: 0px 0px 20px 7px rgb(30, 57, 74);
 }
 
+#messages {
+    margin: 0px;
+}
+
 .title_box {
     border: 1px solid black;
     border-radius: 10px;
