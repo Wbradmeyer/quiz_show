@@ -2,13 +2,22 @@ from django.db import models
 from user_app.models import User
 # from . forms import UploadFileForm
 
-# Add Game validator here
+class GameManager(models.Manager):
+    def game_validator(self, postData):
+        errors = {}
+
+        if len(postData['title']) < 2:
+            errors['title'] = 'Title should be at least 2 characters.'
+        return errors
+
 class Game(models.Model):
     title = models.CharField(max_length=255)
     is_active = models.BooleanField(default=False)
     creator = models.ForeignKey(User, related_name='gameboards', on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = GameManager()
 
     def __str__(self):
         return self.title
