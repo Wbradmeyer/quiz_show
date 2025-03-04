@@ -2,6 +2,7 @@ from django.db import models
 from user_app.models import User
 # from . forms import UploadFileForm
 
+# GAMES
 class GameManager(models.Manager):
     def game_validator(self, postData):
         errors = {}
@@ -53,12 +54,22 @@ class Game(models.Model):
     def destroy(cls, id):
         cls.objects.get(id=id).delete()
 
-# Add Category validator here
+# CATEGORIES
+class CategoryManager(models.Manager):
+    def category_validator(self, postData):
+        errors = {}
+
+        if len(postData['name']) < 2:
+            errors['name'] = 'Name should be at least 2 characters.'
+        return errors
+    
 class Category(models.Model):
     name = models.CharField(max_length=255)
     game_assigned = models.ForeignKey(Game, related_name="categories_avail", on_delete = models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = CategoryManager()
 
     def __str__(self):
         return self.name
