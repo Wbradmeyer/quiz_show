@@ -97,7 +97,19 @@ class Category(models.Model):
     def destroy(cls, id):
         cls.objects.get(id=id).delete()
 
-# Add question validator here
+# QUESTIONS
+class QuestionManager(models.Manager):
+    def question_validator(self, postData):
+        errors = {}
+
+        if len(postData['question']) < 2:
+            errors['question'] = 'Question should be at least 2 characters.'
+        if len(postData['answer']) < 2:
+            errors['answer'] = 'Answer should be at least 2 characters.'
+        if int(postData['points']) < 0:
+            errors['points'] = 'Points should be at more than 0.'
+        return errors
+    
 class Question(models.Model):
     question = models.TextField()
     # file = models.FileField(upload_to='question_files/', null=True, blank=True, default='')
@@ -108,6 +120,8 @@ class Question(models.Model):
     category_assigned = models.ForeignKey(Category, related_name="question_list", on_delete = models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = QuestionManager()
 
     def __str__(self):
         return self.question[0:30]
