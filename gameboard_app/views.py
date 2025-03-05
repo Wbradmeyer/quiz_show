@@ -1,10 +1,16 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from . models import Game, Category, Question
 from . forms import UploadFileForm
 
 # Create methods
 def create_game(request):
     # add validations here
+    errors = Game.objects.game_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/games')
     game = Game.add_game({'title': request.POST['title'], 'user_id': request.session['user_id']})
     request.session['game_id'] = game.id
     return redirect('/games/categories')
