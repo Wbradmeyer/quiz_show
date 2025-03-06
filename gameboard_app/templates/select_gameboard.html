@@ -18,11 +18,11 @@
             </div>
         </div>
         {% if messages %}
-            <ol id="messages">    
+            <ol id="game_messages">    
                 {% for message in messages %}    
                     <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
                 {% endfor %}
-                <button class="delete" onclick="messages.remove()">Okay</button>
+                <button class="delete" onclick="game_messages.remove()">Okay</button>
             </ol>
         {% endif %}
         <div class="title_box">
