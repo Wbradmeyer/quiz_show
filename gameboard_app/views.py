@@ -5,7 +5,6 @@ from . forms import UploadFileForm
 
 # Create methods
 def create_game(request):
-    # add validations here
     errors = Game.objects.game_validator(request.POST)
     if len(errors) > 0:
         for key, value in errors.items():
@@ -17,6 +16,11 @@ def create_game(request):
 
 def create_category(request):
     # add validations here
+    errors = Category.objects.category_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/games/categories')
     game = Game.get_by_id(request.POST['game_id'])
     Category.add_category({'name': request.POST['name'], 'game_assigned': game})
     return redirect('/games/categories')
