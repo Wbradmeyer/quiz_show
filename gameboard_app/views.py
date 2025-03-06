@@ -15,7 +15,6 @@ def create_game(request):
     return redirect('/games/categories')
 
 def create_category(request):
-    # add validations here
     errors = Category.objects.category_validator(request.POST)
     if len(errors) > 0:
         for key, value in errors.items():
@@ -27,7 +26,12 @@ def create_category(request):
 
 def create_question(request):
     # add validations here
+    errors = Question.objects.question_validator(request.POST)
     category = Category.get_by_id(request.POST['cat_id'])
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect(f'/games/categories/{category.id}')
     file_form = UploadFileForm(request.POST, request.FILES)
     Question.add_question({'question': request.POST['question'], 
                         'answer': request.POST['answer'],
