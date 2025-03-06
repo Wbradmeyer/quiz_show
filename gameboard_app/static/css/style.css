@@ -25,7 +25,7 @@ body {
     box-shadow: 2px 2px 10px darkslategray;
 }
 
-#messages {
+#messages, #cat_messages {
     position: absolute;
     border: 1px solid black;
     border-radius: 10px;
