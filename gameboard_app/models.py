@@ -106,8 +106,12 @@ class QuestionManager(models.Manager):
             errors['question'] = 'Question should be at least 2 characters.'
         if len(postData['answer']) < 2:
             errors['answer'] = 'Answer should be at least 2 characters.'
-        if int(postData['points']) < 0:
-            errors['points'] = 'Points should be at more than 0.'
+        
+        points = postData.get('points', '').strip()
+        if not points.isdigit():
+            errors['points'] = 'Points should be a valid number.'
+        elif int(postData['points']) <= 0:
+            errors['points'] = 'Points should be more than 0.'
         return errors
     
 class Question(models.Model):
