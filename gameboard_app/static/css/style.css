@@ -25,7 +25,7 @@ body {
     box-shadow: 2px 2px 10px darkslategray;
 }
 
-#messages, #game_messages, #cat_messages {
+#messages, #game_messages, #cat_messages, #ques_messages {
     position: absolute;
     border: 1px solid black;
     border-radius: 10px;
@@ -36,7 +36,7 @@ body {
     box-shadow: 0px 0px 20px 7px rgb(30, 57, 74);
 }
 
-#game_messages, #cat_messages {
+#game_messages, #cat_messages, #ques_messages {
     left: 50%;
     margin: 19px 0px;
 }

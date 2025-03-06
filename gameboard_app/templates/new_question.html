@@ -44,6 +44,14 @@
                         </div>
                     {% endfor %}
                 </div>
+                {% if messages %}
+                    <ol id="ques_messages">    
+                        {% for message in messages %}    
+                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                        {% endfor %}
+                        <button class="delete" onclick="ques_messages.remove()">Okay</button>
+                    </ol>
+                {% endif %}
                 <div class="ques_box_right">
                     <h3>Add question</h3>
                     <form action="{% url 'new_question' %}" method="post" enctype="multipart/form-data">
