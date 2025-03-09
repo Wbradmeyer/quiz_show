@@ -45,9 +45,12 @@ def create_question(request):
 def add_player(request):
     game = Game.get_by_id(request.POST['game_id'])
     if 'player_1' not in request.session:
-        request.session['player_1'] = request.POST['player_name']
-        request.session['score_1'] = 0
-        request.session['player_count'] = 1
+        if not request.POST['player_name']:
+            redirect(f'/games/play/{game.id}')
+        else:
+            request.session['player_1'] = request.POST['player_name']
+            request.session['score_1'] = 0
+            request.session['player_count'] = 1
     elif 'player_2' not in request.session:
         request.session['player_2'] = request.POST['player_name']
         request.session['score_2'] = 0
